@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f6f2eb"/>
+      <stop offset="100%" stop-color="#edf4f8"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-opacity="0.12"/>
+    </filter>
+    <style>
+      .title { font: 700 34px "Times New Roman", "Microsoft YaHei", serif; fill: #233340; }
+      .subtitle { font: 500 17px "Times New Roman", "Microsoft YaHei", serif; fill: #5b7280; }
+      .entity { fill: #ffffff; stroke: #ccd7df; stroke-width: 1.4; rx: 18; ry: 18; filter: url(#shadow); }
+      .head { fill: #eef5fb; stroke: #b9cbda; stroke-width: 1.2; rx: 18; ry: 18; }
+      .label { font: 700 22px "Times New Roman", "Microsoft YaHei", serif; fill: #223744; }
+      .field { font: 500 16px Consolas, "Microsoft YaHei", monospace; fill: #344b5b; }
+      .note { font: 600 18px "Microsoft YaHei", sans-serif; fill: #83552e; }
+      .line { stroke: #3a586d; stroke-width: 3; fill: none; }
+      .crow { stroke: #3a586d; stroke-width: 3; fill: none; }
+    </style>
+  </defs>
+  <rect width="1400" height="900" fill="url(#bg)"/>
+  <text x="700" y="60" text-anchor="middle" class="title">数据库 ER 图</text>
+  <text x="700" y="90" text-anchor="middle" class="subtitle">Logical ER Diagram for User and Recognition History Storage</text>
+  <rect x="120" y="180" width="420" height="520" class="entity"/>
+  <rect x="120" y="180" width="420" height="84" class="head"/>
+  <text x="330" y="230" text-anchor="middle" class="label">User</text>
+  <text x="160" y="300" class="field">PK  id</text>
+  <text x="160" y="336" class="field">username</text>
+  <text x="160" y="372" class="field">password_hash</text>
+  <text x="160" y="408" class="field">role</text>
+  <text x="160" y="444" class="field">full_name</text>
+  <text x="160" y="480" class="field">is_active</text>
+  <text x="160" y="516" class="field">created_at</text>
+  <rect x="860" y="120" width="420" height="640" class="entity"/>
+  <rect x="860" y="120" width="420" height="84" class="head"/>
+  <text x="1070" y="170" text-anchor="middle" class="label">RecognitionHistory</text>
+  <text x="900" y="240" class="field">PK  id</text>
+  <text x="900" y="276" class="field">FK  user_id</text>
+  <text x="900" y="312" class="field">source_type</text>
+  <text x="900" y="348" class="field">original_path</text>
+  <text x="900" y="384" class="field">processed_path</text>
+  <text x="900" y="420" class="field">recognized_text</text>
+  <text x="900" y="456" class="field">word_linear_text</text>
+  <text x="900" y="492" class="field">word_mathml_text</text>
+  <text x="900" y="528" class="field">username_snapshot</text>
+  <text x="900" y="564" class="field">full_name_snapshot</text>
+  <text x="900" y="600" class="field">role_snapshot</text>
+  <text x="900" y="636" class="field">created_at</text>
+  <path d="M540 430 L860 430" class="line"/>
+  <path d="M540 430 L580 410" class="crow"/>
+  <path d="M540 430 L580 450" class="crow"/>
+  <path d="M860 430 L820 430" class="line"/>
+  <text x="700" y="404" text-anchor="middle" class="note">1 : N</text>
+  <text x="700" y="454" text-anchor="middle" class="note">一个用户对应多条识别历史记录</text>
+  <text x="700" y="830" text-anchor="middle" class="field">说明：项目运行时使用 JSON 进行轻量化持久化，该图为论文中的逻辑数据模型表达。</text>
+</svg>

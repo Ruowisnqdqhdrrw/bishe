@@ -1,0 +1,573 @@
+{% extends "base.html" %}
+
+{% block title %}上传识别 - 手写数学公式识别系统{% endblock %}
+
+{% block head %}
+<style>
+    .upload-layout {
+        display: grid;
+        gap: 20px;
+    }
+
+    .upload-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .drop-card,
+    .preview-card,
+    .result-card {
+        background: rgba(255, 255, 255, 0.96);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        border-radius: 28px;
+        padding: 24px;
+        box-shadow: 0 20px 60px rgba(33, 64, 102, 0.08);
+    }
+
+    .drop-zone {
+        min-height: 240px;
+        border: 2px dashed #bdd0ec;
+        border-radius: 24px;
+        display: grid;
+        place-items: center;
+        text-align: center;
+        padding: 30px;
+        background: linear-gradient(160deg, #f8fbff 0%, #fdfefe 100%);
+        cursor: pointer;
+        transition: 0.2s ease;
+    }
+
+    .drop-zone.dragover {
+        border-color: #7fd8be;
+        background: #f2fcf8;
+    }
+
+    .drop-zone strong {
+        font-size: 24px;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .drop-zone span {
+        color: var(--muted);
+        line-height: 1.7;
+    }
+
+    .preview-card img {
+        width: 100%;
+        min-height: 320px;
+        border-radius: 18px;
+        border: 1px solid var(--line);
+        object-fit: contain;
+        background: #f8fbff;
+    }
+
+    .formula-stage {
+        min-height: 320px;
+        border-radius: 18px;
+        border: 1px solid var(--line);
+        background:
+            linear-gradient(180deg, rgba(245, 248, 255, 0.8), rgba(255, 255, 255, 0.95)),
+            radial-gradient(circle at top right, rgba(188, 205, 244, 0.22), transparent 40%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+    }
+
+    .formula-stage img {
+        max-width: 100%;
+        max-height: 260px;
+        object-fit: contain;
+        display: none;
+    }
+
+    .formula-stage.has-formula img {
+        display: block;
+    }
+
+    .formula-placeholder {
+        text-align: center;
+        color: var(--muted);
+        line-height: 1.8;
+    }
+
+    .formula-stage.has-formula .formula-placeholder {
+        display: none;
+    }
+
+    .field-label {
+        margin: 4px 0 8px;
+        font-size: 14px;
+        color: var(--muted);
+    }
+
+    .result-card {
+        display: grid;
+        gap: 14px;
+    }
+
+    .result-card input,
+    .result-card textarea {
+        width: 100%;
+        border-radius: 14px;
+        border: 1px solid var(--line);
+        padding: 12px 14px;
+        font-size: 17px;
+        background: #fbfdff;
+        resize: vertical;
+    }
+
+    .result-card textarea {
+        min-height: 88px;
+    }
+
+    .button-row {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .correction-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 20;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background: rgba(20, 38, 58, 0.36);
+    }
+
+    .correction-dialog {
+        width: min(880px, calc(100vw - 40px));
+        max-height: calc(100vh - 48px);
+        overflow: auto;
+        display: grid;
+        gap: 20px;
+        padding: 30px;
+        border-radius: 22px;
+        border: 1px solid var(--line);
+        background: #ffffff;
+        box-shadow: 0 26px 80px rgba(20, 38, 58, 0.22);
+    }
+
+    .correction-dialog h3 {
+        margin: 0;
+        font-size: 26px;
+    }
+
+    .correction-dialog p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.6;
+    }
+
+    .correction-dialog input {
+        width: 100%;
+        min-height: 54px;
+        border-radius: 14px;
+        border: 1px solid var(--line);
+        padding: 14px 16px;
+        font-size: 18px;
+        background: #fbfdff;
+    }
+
+    .correction-options {
+        display: grid;
+        gap: 12px;
+        max-height: 280px;
+        overflow: auto;
+        padding-right: 4px;
+    }
+
+    .correction-option {
+        width: 100%;
+        min-height: 54px;
+        padding: 13px 16px;
+        justify-content: flex-start;
+        white-space: normal;
+        text-align: left;
+        line-height: 1.35;
+        font-size: 16px;
+    }
+
+    .status-row {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    #loader {
+        display: none;
+        width: 26px;
+        height: 26px;
+        border: 3px solid #d9e4f2;
+        border-top-color: #2d6cdf;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 980px) {
+        .upload-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="upload-layout">
+    <section class="drop-card">
+        <h1>上传图片识别</h1>
+        <input id="file-input" type="file" accept="image/*" hidden>
+        <div id="drop-zone" class="drop-zone">
+            <div>
+                <strong>点击上传或拖拽图片到这里</strong>
+                <span>选择后会自动上传并开始识别</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="upload-grid">
+        <section class="preview-card">
+            <h2>原始图片</h2>
+            <img id="original-preview" src="{{ url_for('static', filename='upload_image_logo.png') }}" alt="原始图片预览">
+        </section>
+
+        <section class="preview-card">
+            <h2>公式显示区</h2>
+            <div id="formula-stage" class="formula-stage">
+                <div class="formula-placeholder">
+                    <strong>识别结果</strong>
+                    <div>上传图片后，这里会显示公式渲染结果</div>
+                </div>
+                <img id="formula-preview" src="" alt="公式渲染结果">
+            </div>
+        </section>
+    </div>
+
+    <section class="result-card">
+        <div class="status-row">
+            <button class="button ghost" type="button" onclick="resetUploadPage()">清空当前结果</button>
+            <div id="loader"></div>
+            <span id="upload-status"></span>
+        </div>
+
+        <div>
+            <div class="field-label">LaTeX / 识别结果</div>
+            <input id="upload-result" type="text" placeholder="识别结果会自动显示在这里">
+        </div>
+
+        <div>
+            <div class="field-label">Word 粘贴预览（复制时自动使用 MathML）</div>
+            <textarea id="upload-word-linear" placeholder="Word 公式线性格式会自动生成在这里"></textarea>
+        </div>
+
+        <div class="button-row">
+            <button class="button ghost" type="button" onclick="copyUploadLatex()">复制 LaTeX</button>
+            <button class="button ghost" type="button" onclick="copyUploadWordFormula()">复制 Word</button>
+            <button class="button ghost" type="button" onclick="copyUploadPng()">复制 PNG</button>
+            <button id="upload-correction-button" class="button ghost" type="button" onclick="openUploadCorrectionDialog()" disabled>识别有误</button>
+        </div>
+    </section>
+</div>
+
+<div id="upload-correction-modal" class="correction-modal" role="dialog" aria-modal="true" aria-labelledby="upload-correction-title">
+    <div class="correction-dialog">
+        <h3 id="upload-correction-title">提交正确公式</h3>
+        <p>可以从勘误表推荐中选择，也可以手动输入正确公式。</p>
+        <div>
+            <div class="field-label">勘误表推荐</div>
+            <div id="upload-correction-options" class="correction-options"></div>
+        </div>
+        <div>
+            <div class="field-label">手动输入正确公式</div>
+            <input id="upload-correction-input" type="text" placeholder="请输入正确公式">
+        </div>
+        <div class="button-row">
+            <button class="button primary" type="button" onclick="submitUploadManualCorrection()">保存纠错</button>
+            <button class="button ghost" type="button" onclick="closeUploadCorrectionDialog()">取消</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const fileInput = document.getElementById('file-input');
+    const dropZone = document.getElementById('drop-zone');
+    const loader = document.getElementById('loader');
+    const statusText = document.getElementById('upload-status');
+    const originalPreview = document.getElementById('original-preview');
+    const formulaStage = document.getElementById('formula-stage');
+    const formulaPreview = document.getElementById('formula-preview');
+    const uploadResult = document.getElementById('upload-result');
+    const uploadWordLinear = document.getElementById('upload-word-linear');
+    const uploadCorrectionButton = document.getElementById('upload-correction-button');
+    const uploadCorrectionModal = document.getElementById('upload-correction-modal');
+    const uploadCorrectionOptions = document.getElementById('upload-correction-options');
+    const uploadCorrectionInput = document.getElementById('upload-correction-input');
+    const uploadPlaceholderImage = '{{ url_for("static", filename="upload_image_logo.png") }}';
+    let currentFormulaPngUrl = '';
+    let currentWordMathml = '';
+    let currentHistoryId = null;
+    let currentCorrectionSuggestions = [];
+
+    function setFormulaPreview(url) {
+        currentFormulaPngUrl = url || '';
+        if (currentFormulaPngUrl) {
+            formulaPreview.src = currentFormulaPngUrl + '?t=' + Date.now();
+            formulaStage.classList.add('has-formula');
+            return;
+        }
+        formulaPreview.removeAttribute('src');
+        formulaStage.classList.remove('has-formula');
+    }
+
+    function setStatus(message) {
+        statusText.textContent = message || '';
+    }
+
+    function markManualEdit() {
+        currentWordMathml = '';
+        currentFormulaPngUrl = '';
+        setFormulaPreview('');
+        uploadWordLinear.value = uploadResult.value;
+        setStatus('识别结果已手动修改，复制 LaTeX / Word 将使用当前内容');
+    }
+
+    function markWordPreviewEdit() {
+        currentWordMathml = '';
+        setStatus('Word 预览已手动修改，复制 Word 将使用当前内容');
+    }
+
+    function resetUploadPage() {
+        originalPreview.src = uploadPlaceholderImage;
+        setFormulaPreview('');
+        uploadResult.value = '';
+        uploadWordLinear.value = '';
+        currentWordMathml = '';
+        currentHistoryId = null;
+        currentCorrectionSuggestions = [];
+        uploadCorrectionButton.disabled = true;
+        setStatus('');
+    }
+
+    function applyResult(data) {
+        originalPreview.src = data.original_preview + '?t=' + Date.now();
+        setFormulaPreview(data.formula_png_url);
+        uploadResult.value = data.latex || '';
+        uploadWordLinear.value = data.word_linear || '';
+        currentWordMathml = data.word_mathml || '';
+        currentHistoryId = data.history_id || null;
+        currentCorrectionSuggestions = data.correction_suggestions || [];
+        uploadCorrectionButton.disabled = !currentHistoryId;
+        setStatus(data.success ? '识别完成' : '识别失败');
+    }
+
+    function applyCorrectedUploadResult(data) {
+        setFormulaPreview(data.formula_png_url);
+        uploadResult.value = data.latex || '';
+        uploadWordLinear.value = data.word_linear || '';
+        currentWordMathml = data.word_mathml || '';
+        currentHistoryId = data.history_id || currentHistoryId;
+        currentCorrectionSuggestions = data.correction_suggestions || [];
+        uploadCorrectionButton.disabled = !currentHistoryId;
+        closeUploadCorrectionDialog();
+        setStatus('纠错已保存，结果已更新');
+    }
+
+    function renderUploadCorrectionOptions() {
+        uploadCorrectionOptions.innerHTML = '';
+        if (!currentCorrectionSuggestions.length) {
+            const empty = document.createElement('p');
+            empty.textContent = '暂无推荐，请手动输入正确公式。';
+            uploadCorrectionOptions.appendChild(empty);
+            return;
+        }
+
+        currentCorrectionSuggestions.forEach(function (item) {
+            const option = document.createElement('button');
+            option.type = 'button';
+            option.className = 'button ghost correction-option';
+            option.textContent = item.formula + (item.count ? '（使用 ' + item.count + ' 次）' : '');
+            option.addEventListener('click', function () {
+                submitUploadCorrection(item.formula);
+            });
+            uploadCorrectionOptions.appendChild(option);
+        });
+    }
+
+    function openUploadCorrectionDialog() {
+        if (!currentHistoryId) {
+            alert('请先完成一次识别。');
+            return;
+        }
+        uploadCorrectionInput.value = '';
+        renderUploadCorrectionOptions();
+        uploadCorrectionModal.style.display = 'flex';
+        uploadCorrectionInput.focus();
+    }
+
+    function closeUploadCorrectionDialog() {
+        uploadCorrectionModal.style.display = 'none';
+    }
+
+    function submitUploadManualCorrection() {
+        submitUploadCorrection(uploadCorrectionInput.value);
+    }
+
+    function submitUploadCorrection(correctText) {
+        const formula = (correctText || '').trim();
+        if (!formula) {
+            alert('请输入或选择正确公式。');
+            return;
+        }
+
+        loader.style.display = 'block';
+        setStatus('正在保存纠错...');
+        fetch('{{ url_for("submit_correction") }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                history_id: currentHistoryId,
+                correct_text: formula
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                loader.style.display = 'none';
+                if (!data.success) {
+                    setStatus(data.error || '纠错保存失败');
+                    alert(data.error || '纠错保存失败');
+                    return;
+                }
+                applyCorrectedUploadResult(data);
+            })
+            .catch(error => {
+                loader.style.display = 'none';
+                setStatus('纠错保存失败');
+                alert('纠错保存失败：' + error);
+            });
+    }
+
+    function uploadSelectedFile(file) {
+        if (!file) {
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('image', file);
+        loader.style.display = 'block';
+        setStatus('正在上传并识别...');
+
+        fetch('{{ url_for("upload_file") }}', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                loader.style.display = 'none';
+                if (!data.success) {
+                    setStatus(data.error || '识别失败');
+                    alert(data.error || '识别失败');
+                    return;
+                }
+                applyResult(data);
+            })
+            .catch(error => {
+                loader.style.display = 'none';
+                setStatus('识别失败');
+                alert('上传失败：' + error);
+            });
+    }
+
+    async function copyUploadLatex() {
+        try {
+            await copyPlainText(uploadResult.value);
+            setStatus('LaTeX 已复制');
+        } catch (error) {
+            if (String(error && error.message) !== 'empty') {
+                alert('复制 LaTeX 失败，请重试。');
+            }
+        }
+    }
+
+    async function copyUploadWordFormula() {
+        try {
+            if (currentWordMathml && currentWordMathml.trim()) {
+                await copyWordMathML(currentWordMathml, uploadWordLinear.value);
+            } else {
+                await copyPlainText(uploadWordLinear.value);
+            }
+            setStatus('Word 公式已复制');
+        } catch (error) {
+            if (String(error && error.message) !== 'empty') {
+                alert('复制 Word 公式失败，请重试。');
+            }
+        }
+    }
+
+    async function copyUploadPng() {
+        try {
+            if (!currentFormulaPngUrl) {
+                alert('当前结果已被手动修改，请重新识别后再复制 PNG。');
+                return;
+            }
+            await copyPngFromUrl(currentFormulaPngUrl);
+            setStatus('PNG 已复制');
+        } catch (error) {
+            if (String(error && error.message) === 'unsupported') {
+                alert('当前浏览器暂不支持复制 PNG，请更换 Chromium 内核浏览器后再试。');
+            } else if (String(error && error.message) !== 'empty') {
+                alert('复制 PNG 失败，请重试。');
+            }
+        }
+    }
+
+    dropZone.addEventListener('click', function () {
+        fileInput.click();
+    });
+
+    fileInput.addEventListener('change', function () {
+        uploadSelectedFile(fileInput.files[0]);
+    });
+
+    uploadResult.addEventListener('input', function () {
+        markManualEdit();
+    });
+
+    uploadWordLinear.addEventListener('input', function () {
+        markWordPreviewEdit();
+    });
+
+    ['dragenter', 'dragover'].forEach(function (eventName) {
+        dropZone.addEventListener(eventName, function (event) {
+            event.preventDefault();
+            dropZone.classList.add('dragover');
+        });
+    });
+
+    ['dragleave', 'drop'].forEach(function (eventName) {
+        dropZone.addEventListener(eventName, function (event) {
+            event.preventDefault();
+            dropZone.classList.remove('dragover');
+        });
+    });
+
+    dropZone.addEventListener('drop', function (event) {
+        const files = event.dataTransfer.files;
+        if (files && files.length > 0) {
+            uploadSelectedFile(files[0]);
+        }
+    });
+</script>
+{% endblock %}

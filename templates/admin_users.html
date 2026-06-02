@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+
+{% block title %}账号管理 - 手写数学公式识别系统{% endblock %}
+
+{% block head %}
+<style>
+    .admin-grid {
+        display: grid;
+        grid-template-columns: 360px 1fr;
+        gap: 20px;
+    }
+
+    .panel {
+        background: rgba(255, 255, 255, 0.96);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        border-radius: 28px;
+        padding: 24px;
+        box-shadow: 0 20px 60px rgba(33, 64, 102, 0.08);
+    }
+
+    form {
+        display: grid;
+        gap: 12px;
+    }
+
+    input,
+    select {
+        width: 100%;
+        height: 44px;
+        border-radius: 12px;
+        border: 1px solid var(--line);
+        padding: 0 12px;
+        font-size: 15px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        padding: 12px 10px;
+        border-bottom: 1px solid #e5ebf4;
+        text-align: left;
+        font-size: 14px;
+    }
+
+    th {
+        color: var(--muted);
+        font-weight: 600;
+    }
+
+    .status {
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: #eef8f3;
+        color: #2f7b58;
+        font-size: 13px;
+    }
+
+    .status.off {
+        background: #fff1ed;
+        color: #9b583f;
+    }
+
+    .table-actions {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .hint {
+        margin-top: 12px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.6;
+    }
+
+    @media (max-width: 980px) {
+        .admin-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="admin-grid">
+    <section class="panel">
+        <h1>新增账号</h1>
+        <form method="POST" action="{{ url_for('admin_create_user') }}">
+            <input name="full_name" type="text" placeholder="姓名" required>
+            <input name="username" type="text" placeholder="用户名" required>
+            <input name="password" type="password" placeholder="初始密码" required>
+            <select name="role">
+                <option value="teacher">老师</option>
+                <option value="student">学生</option>
+            </select>
+            <button class="button primary" type="submit">创建账号</button>
+        </form>
+        <p class="hint">管理员可以创建教师/学生账号；教师和学生也可以在登录页自行注册，注册后同样会出现在右侧列表中。</p>
+    </section>
+
+    <section class="panel">
+        <h1>账号列表</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>用户名</th>
+                    <th>角色</th>
+                    <th>状态</th>
+                    <th>创建时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.full_name }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ role_labels.get(user.role, user.role) }}</td>
+                        <td>
+                            <span class="status {% if not user.is_active %}off{% endif %}">
+                                {{ '使用中' if user.is_active else '已注销' }}
+                            </span>
+                        </td>
+                        <td>{{ user.created_at }}</td>
+                        <td>
+                            {% if user.role != 'admin' %}
+                                <div class="table-actions">
+                                    <form method="POST" action="{{ url_for('admin_reset_user_password', user_id=user.id) }}">
+                                        <button class="button ghost" type="submit">重置密码</button>
+                                    </form>
+                                    <form method="POST" action="{{ url_for('admin_delete_user', user_id=user.id) }}" onsubmit="return confirm('确认删除这个账号吗？账号会被清理，但识别历史会保留。');">
+                                        <button class="button ghost" type="submit">删除账号</button>
+                                    </form>
+                                </div>
+                            {% else %}
+                                <span>固定</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</div>
+{% endblock %}

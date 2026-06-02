@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1020" viewBox="0 0 1600 1020">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f7f2eb"/>
+      <stop offset="100%" stop-color="#edf3f8"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" markerWidth="14" markerHeight="14" refX="11" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#345165"/>
+    </marker>
+    <style>
+      .title { font: 700 34px "Times New Roman", "Microsoft YaHei", serif; fill: #22323f; }
+      .subtitle { font: 500 17px "Times New Roman", "Microsoft YaHei", serif; fill: #5a7180; }
+      .panel { fill: #ffffff; stroke: #d7dfe6; stroke-width: 1.4; rx: 22; ry: 22; filter: url(#shadow); }
+      .box { fill: #ffffff; stroke: #cad6e0; stroke-width: 1.2; rx: 16; ry: 16; }
+      .accent { fill: #f8fbff; stroke: #bed0df; stroke-width: 1.2; rx: 16; ry: 16; }
+      .label { font: 600 19px "Microsoft YaHei", sans-serif; fill: #243744; }
+      .small { font: 500 14px "Microsoft YaHei", sans-serif; fill: #60717f; }
+      .mono { font: 600 14px Consolas, monospace; fill: #294355; }
+      .arrow { stroke: #345165; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect width="1600" height="1020" fill="url(#bg)"/>
+  <text x="800" y="58" text-anchor="middle" class="title">端到端识别模型结构图</text>
+  <text x="800" y="88" text-anchor="middle" class="subtitle">End-to-End HMER Model Architecture</text>
+  <rect x="60" y="150" width="220" height="740" class="panel"/>
+  <text x="170" y="190" text-anchor="middle" class="label">输入层</text>
+  <rect x="96" y="240" width="148" height="150" class="box"/>
+  <text x="170" y="292" text-anchor="middle" class="label">输入图像</text>
+  <text x="170" y="318" text-anchor="middle" class="small">1 × H × W</text>
+  <text x="170" y="342" text-anchor="middle" class="small">白字黑底二值图</text>
+  <rect x="96" y="470" width="148" height="170" class="box"/>
+  <text x="170" y="520" text-anchor="middle" class="label">动态宽度</text>
+  <text x="170" y="546" text-anchor="middle" class="small">高度固定 64</text>
+  <text x="170" y="570" text-anchor="middle" class="small">宽度按比例缩放</text>
+  <text x="170" y="594" text-anchor="middle" class="small">最大宽度 512</text>
+  <rect x="330" y="150" width="350" height="740" class="panel"/>
+  <text x="505" y="190" text-anchor="middle" class="label">编码器</text>
+  <rect x="372" y="240" width="266" height="120" class="accent"/>
+  <text x="505" y="286" text-anchor="middle" class="label">卷积 Stem</text>
+  <text x="505" y="312" text-anchor="middle" class="small">Conv + BN + GELU</text>
+  <text x="505" y="336" text-anchor="middle" class="small">提取低层视觉特征</text>
+  <rect x="372" y="400" width="266" height="150" class="accent"/>
+  <text x="505" y="444" text-anchor="middle" class="label">残差卷积块</text>
+  <text x="505" y="470" text-anchor="middle" class="small">Layer1 ~ Layer4</text>
+  <text x="505" y="494" text-anchor="middle" class="small">SE 注意力 / DropPath</text>
+  <text x="505" y="518" text-anchor="middle" class="small">逐层压缩空间维度</text>
+  <rect x="372" y="590" width="266" height="120" class="accent"/>
+  <text x="505" y="636" text-anchor="middle" class="label">序列化</text>
+  <text x="505" y="662" text-anchor="middle" class="small">AdaptiveAvgPool -> squeeze</text>
+  <text x="505" y="686" text-anchor="middle" class="small">二维特征转为宽度序列</text>
+  <rect x="372" y="750" width="266" height="100" class="accent"/>
+  <text x="505" y="792" text-anchor="middle" class="label">BiGRU</text>
+  <text x="505" y="818" text-anchor="middle" class="small">建模序列上下文依赖</text>
+  <rect x="730" y="150" width="410" height="740" class="panel"/>
+  <text x="935" y="190" text-anchor="middle" class="label">解码器</text>
+  <rect x="772" y="230" width="326" height="140" class="box"/>
+  <text x="935" y="276" text-anchor="middle" class="label">LSTM 解码分支</text>
+  <text x="935" y="302" text-anchor="middle" class="small">Embedding + Coverage Attention</text>
+  <text x="935" y="326" text-anchor="middle" class="small">多层 LSTMCell 逐步生成 token</text>
+  <text x="935" y="350" text-anchor="middle" class="small">适合显式自回归建模</text>
+  <rect x="772" y="420" width="326" height="140" class="box"/>
+  <text x="935" y="466" text-anchor="middle" class="label">Transformer 解码分支</text>
+  <text x="935" y="492" text-anchor="middle" class="small">Positional Encoding</text>
+  <text x="935" y="516" text-anchor="middle" class="small">Self-Attention + Cross-Attention</text>
+  <text x="935" y="540" text-anchor="middle" class="small">支持 KV Cache 推理</text>
+  <rect x="772" y="610" width="326" height="120" class="box"/>
+  <text x="935" y="656" text-anchor="middle" class="label">输出层</text>
+  <text x="935" y="682" text-anchor="middle" class="small">Linear -> Vocabulary Distribution</text>
+  <text x="935" y="706" text-anchor="middle" class="small">预测下一个公式 token</text>
+  <rect x="772" y="770" width="326" height="100" class="box"/>
+  <text x="935" y="812" text-anchor="middle" class="label">训练方式</text>
+  <text x="935" y="838" text-anchor="middle" class="small">Teacher Forcing / Scheduled Sampling</text>
+  <rect x="1190" y="150" width="350" height="740" class="panel"/>
+  <text x="1365" y="190" text-anchor="middle" class="label">解码输出</text>
+  <rect x="1232" y="240" width="266" height="140" class="accent"/>
+  <text x="1365" y="286" text-anchor="middle" class="label">Greedy Decode</text>
+  <text x="1365" y="312" text-anchor="middle" class="small">每一步取最大概率 token</text>
+  <text x="1365" y="336" text-anchor="middle" class="small">速度快，适合快速推理</text>
+  <rect x="1232" y="430" width="266" height="160" class="accent"/>
+  <text x="1365" y="476" text-anchor="middle" class="label">Beam Search</text>
+  <text x="1365" y="502" text-anchor="middle" class="small">保留多个候选序列</text>
+  <text x="1365" y="526" text-anchor="middle" class="small">长度惩罚 / 可选覆盖惩罚</text>
+  <text x="1365" y="550" text-anchor="middle" class="small">提升整体序列准确率</text>
+  <rect x="1232" y="640" width="266" height="170" class="accent"/>
+  <text x="1365" y="686" text-anchor="middle" class="label">最终输出</text>
+  <text x="1365" y="712" text-anchor="middle" class="small">token 序列</text>
+  <text x="1365" y="736" text-anchor="middle" class="small">近似 LaTeX 文本</text>
+  <text x="1365" y="760" text-anchor="middle" class="small">后续进入公式转换与求解</text>
+  <path d="M244 315 L372 315" class="arrow"/>
+  <path d="M505 360 L505 400" class="arrow"/>
+  <path d="M505 550 L505 590" class="arrow"/>
+  <path d="M505 710 L505 750" class="arrow"/>
+  <path d="M638 800 C700 800, 710 300, 772 300" class="arrow"/>
+  <path d="M638 800 C700 800, 710 490, 772 490" class="arrow"/>
+  <path d="M1098 300 C1160 300, 1170 310, 1232 310" class="arrow"/>
+  <path d="M1098 490 C1160 490, 1170 510, 1232 510" class="arrow"/>
+  <path d="M1098 670 C1160 670, 1170 725, 1232 725" class="arrow"/>
+  <text x="800" y="950" text-anchor="middle" class="small">说明：本模型采用“整图输入 -> 序列输出”的端到端 HMER 方案，不依赖字符级分割。</text>
+</svg>

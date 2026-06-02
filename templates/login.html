@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ '账号登录' if auth_mode != 'register' else '账号注册' }} - 手写数学公式识别系统</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            background:
+                radial-gradient(circle at top left, rgba(245, 175, 146, 0.26), transparent 28%),
+                radial-gradient(circle at top right, rgba(188, 205, 244, 0.30), transparent 30%),
+                linear-gradient(165deg, #eff4fb 0%, #f8fbff 52%, #eef5f7 100%);
+            font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+            color: #17324d;
+        }
+
+        .panel {
+            width: min(520px, calc(100vw - 32px));
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(255, 255, 255, 0.85);
+            border-radius: 28px;
+            padding: 34px 30px 30px;
+            box-shadow: 0 24px 60px rgba(33, 64, 102, 0.10);
+        }
+
+        h1 {
+            margin: 0 0 12px;
+            font-size: 32px;
+            text-align: center;
+        }
+
+        .sub {
+            margin: 0 0 22px;
+            color: #6b8198;
+            text-align: center;
+        }
+
+        .switch-link {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin: -4px 0 22px;
+            color: #8d9cb0;
+            font-size: 15px;
+        }
+
+        .switch-link a {
+            color: #17324d;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .switch-link a:hover {
+            text-decoration: underline;
+        }
+
+        form {
+            display: grid;
+            gap: 14px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            height: 48px;
+            border-radius: 14px;
+            border: 1px solid #d8e1ee;
+            padding: 0 14px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            height: 48px;
+            border: none;
+            border-radius: 14px;
+            background: #fff4e8;
+            color: #f0a64f;
+            border: 1px solid #f7d8af;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #ffeedb;
+        }
+
+        .helper-link {
+            margin-top: 8px;
+            text-align: center;
+            color: #8d9cb0;
+            font-size: 16px;
+        }
+
+        .note {
+            margin-top: 16px;
+            padding: 12px 14px;
+            border-radius: 12px;
+            background: #f8fbff;
+            border: 1px solid #d8e1ee;
+            color: #6b8198;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .flash-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 14px;
+            display: grid;
+            gap: 10px;
+        }
+
+        .flash-list li {
+            padding: 12px 14px;
+            border-radius: 12px;
+            border: 1px solid #ffd9c8;
+            background: #fff3ee;
+            color: #8e412b;
+        }
+    </style>
+</head>
+<body>
+    <div class="panel">
+        <h1>{{ '账号登录' if auth_mode != 'register' else '账号注册' }}</h1>
+        <p class="sub">面向中小学师生的手写数学公式识别系统</p>
+        {% if auth_mode == 'register' %}
+            <div class="switch-link">
+                <span>已有账户？</span>
+                <a href="{{ url_for('login') }}">点此登录</a>
+            </div>
+        {% else %}
+            <div class="switch-link">
+                <span>没有账户？</span>
+                <a href="{{ url_for('register') }}">点此注册</a>
+            </div>
+        {% endif %}
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flash-list">
+                    {% for category, message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        {% if auth_mode == 'register' %}
+            <form method="POST" action="{{ url_for('register') }}">
+                <input name="full_name" type="text" placeholder="姓名" required>
+                <select name="role" required>
+                    <option value="teacher">教师</option>
+                    <option value="student">学生</option>
+                </select>
+                <input name="username" type="text" placeholder="用户名/账号" required>
+                <input name="password" type="password" placeholder="密码" required>
+                <input name="confirm_password" type="password" placeholder="确认密码" required>
+                <button type="submit">立即注册</button>
+            </form>
+        {% else %}
+            <form method="POST" action="{{ url_for('login') }}">
+                <select name="role" required>
+                    <option value="admin">管理员</option>
+                    <option value="teacher">教师</option>
+                    <option value="student">学生</option>
+                </select>
+                <input name="username" type="text" placeholder="用户名/账号" required>
+                <input name="password" type="password" placeholder="密码" required>
+                <button type="submit">登录</button>
+            </form>
+            <div class="helper-link">已有账户信息后即可直接登录系统</div>
+        {% endif %}
+
+        <div class="note">
+            默认管理员账号：`admin`<br>
+            默认管理员密码：`admin123`
+        </div>
+    </div>
+</body>
+</html>

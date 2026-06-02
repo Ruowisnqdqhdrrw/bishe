@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f5f1ea"/>
+      <stop offset="100%" stop-color="#eef4f8"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" markerWidth="14" markerHeight="14" refX="11" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#365468"/>
+    </marker>
+    <style>
+      .title { font: 700 34px "Times New Roman", "Microsoft YaHei", serif; fill: #20303d; }
+      .subtitle { font: 500 17px "Times New Roman", "Microsoft YaHei", serif; fill: #587082; }
+      .group { fill: #ffffff; stroke: #d7dee6; stroke-width: 1.4; rx: 22; ry: 22; filter: url(#shadow); }
+      .box { fill: #ffffff; stroke: #cad6df; stroke-width: 1.2; rx: 16; ry: 16; }
+      .section { font: 700 22px "Times New Roman", "Microsoft YaHei", serif; fill: #233745; }
+      .label { font: 600 18px "Microsoft YaHei", sans-serif; fill: #243744; }
+      .small { font: 500 14px "Microsoft YaHei", sans-serif; fill: #5b6f7d; }
+      .mono { font: 600 14px Consolas, monospace; fill: #274153; }
+      .arrow { stroke: #365468; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .dash { stroke: #9a6f41; stroke-width: 2.2; fill: none; stroke-dasharray: 8 7; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect width="1600" height="980" fill="url(#bg)"/>
+  <text x="800" y="62" text-anchor="middle" class="title">系统总体架构图</text>
+  <text x="800" y="92" text-anchor="middle" class="subtitle">Overall Architecture of the Handwritten Mathematical Formula Recognition System</text>
+  <rect x="60" y="140" width="220" height="720" class="group"/>
+  <text x="170" y="180" text-anchor="middle" class="section">用户层</text>
+  <rect x="92" y="220" width="156" height="110" class="box"/>
+  <text x="170" y="266" text-anchor="middle" class="label">管理员</text>
+  <text x="170" y="292" text-anchor="middle" class="small">账号管理 / 全部历史</text>
+  <rect x="92" y="380" width="156" height="110" class="box"/>
+  <text x="170" y="426" text-anchor="middle" class="label">教师</text>
+  <text x="170" y="452" text-anchor="middle" class="small">课堂场景公式识别</text>
+  <rect x="92" y="540" width="156" height="110" class="box"/>
+  <text x="170" y="586" text-anchor="middle" class="label">学生</text>
+  <text x="170" y="612" text-anchor="middle" class="small">作业 / 手写练习识别</text>
+  <rect x="92" y="700" width="156" height="120" class="box"/>
+  <text x="170" y="744" text-anchor="middle" class="label">交互入口</text>
+  <text x="170" y="770" text-anchor="middle" class="small">图片上传</text>
+  <text x="170" y="794" text-anchor="middle" class="small">在线手写板</text>
+  <rect x="330" y="140" width="260" height="720" class="group"/>
+  <text x="460" y="180" text-anchor="middle" class="section">表示层</text>
+  <rect x="364" y="220" width="192" height="110" class="box"/>
+  <text x="460" y="260" text-anchor="middle" class="label">首页与导航</text>
+  <text x="460" y="286" text-anchor="middle" class="mono">homepage.html</text>
+  <text x="460" y="308" text-anchor="middle" class="mono">base.html</text>
+  <rect x="364" y="370" width="192" height="110" class="box"/>
+  <text x="460" y="410" text-anchor="middle" class="label">上传识别页面</text>
+  <text x="460" y="436" text-anchor="middle" class="mono">uploadimage.html</text>
+  <text x="460" y="458" text-anchor="middle" class="small">拖拽上传 / 结果展示</text>
+  <rect x="364" y="520" width="192" height="110" class="box"/>
+  <text x="460" y="560" text-anchor="middle" class="label">在线手写页面</text>
+  <text x="460" y="586" text-anchor="middle" class="mono">canvas_sketch.js</text>
+  <text x="460" y="608" text-anchor="middle" class="small">Canvas 采集 / 复制导出</text>
+  <rect x="364" y="670" width="192" height="150" class="box"/>
+  <text x="460" y="712" text-anchor="middle" class="label">辅助页面</text>
+  <text x="460" y="738" text-anchor="middle" class="small">登录注册 / 历史记录</text>
+  <text x="460" y="762" text-anchor="middle" class="small">修改密码 / 管理员页面</text>
+  <text x="460" y="786" text-anchor="middle" class="mono">history.html / login.html</text>
+  <rect x="640" y="140" width="320" height="720" class="group"/>
+  <text x="800" y="180" text-anchor="middle" class="section">业务控制层</text>
+  <rect x="678" y="220" width="244" height="110" class="box"/>
+  <text x="800" y="260" text-anchor="middle" class="label">Flask 路由控制</text>
+  <text x="800" y="286" text-anchor="middle" class="mono">app.py</text>
+  <text x="800" y="308" text-anchor="middle" class="small">认证、页面跳转、接口组织</text>
+  <rect x="678" y="370" width="244" height="120" class="box"/>
+  <text x="800" y="410" text-anchor="middle" class="label">识别接口</text>
+  <text x="800" y="436" text-anchor="middle" class="mono">/upload</text>
+  <text x="800" y="460" text-anchor="middle" class="mono">/recognize_sketch</text>
+  <text x="800" y="482" text-anchor="middle" class="small">生成历史记录与结果载荷</text>
+  <rect x="678" y="530" width="244" height="120" class="box"/>
+  <text x="800" y="570" text-anchor="middle" class="label">格式与导出接口</text>
+  <text x="800" y="596" text-anchor="middle" class="mono">formula.png / word.txt</text>
+  <text x="800" y="620" text-anchor="middle" class="small">LaTeX、MathML、PNG 输出</text>
+  <rect x="678" y="690" width="244" height="130" class="box"/>
+  <text x="800" y="732" text-anchor="middle" class="label">方程求解接口</text>
+  <text x="800" y="758" text-anchor="middle" class="mono">/solve_equation_func</text>
+  <text x="800" y="782" text-anchor="middle" class="small">表达式化简与未知量求解</text>
+  <rect x="1010" y="140" width="290" height="720" class="group"/>
+  <text x="1155" y="180" text-anchor="middle" class="section">算法服务层</text>
+  <rect x="1046" y="220" width="218" height="110" class="box"/>
+  <text x="1155" y="260" text-anchor="middle" class="label">图像预处理</text>
+  <text x="1155" y="286" text-anchor="middle" class="mono">image_preprocessing.py</text>
+  <text x="1155" y="308" text-anchor="middle" class="small">二值化、去噪、裁剪、标准化</text>
+  <rect x="1046" y="370" width="218" height="120" class="box"/>
+  <text x="1155" y="410" text-anchor="middle" class="label">端到端识别</text>
+  <text x="1155" y="436" text-anchor="middle" class="mono">predictor_e2e.py</text>
+  <text x="1155" y="460" text-anchor="middle" class="mono">model_e2e_v3.py</text>
+  <text x="1155" y="482" text-anchor="middle" class="small">整图输入 -> token 序列</text>
+  <rect x="1046" y="530" width="218" height="120" class="box"/>
+  <text x="1155" y="570" text-anchor="middle" class="label">表达式转换</text>
+  <text x="1155" y="596" text-anchor="middle" class="mono">equation_calculator.py</text>
+  <text x="1155" y="620" text-anchor="middle" class="small">LaTeX token -> SymPy 表达式</text>
+  <rect x="1046" y="690" width="218" height="130" class="box"/>
+  <text x="1155" y="732" text-anchor="middle" class="label">格式化与求解</text>
+  <text x="1155" y="758" text-anchor="middle" class="mono">formula_formats.py</text>
+  <text x="1155" y="782" text-anchor="middle" class="mono">solve_equation_file.py</text>
+  <rect x="1350" y="140" width="190" height="720" class="group"/>
+  <text x="1445" y="180" text-anchor="middle" class="section">数据层</text>
+  <rect x="1380" y="220" width="130" height="130" class="box"/>
+  <text x="1445" y="264" text-anchor="middle" class="label">用户数据</text>
+  <text x="1445" y="290" text-anchor="middle" class="small">账号、角色、密码</text>
+  <text x="1445" y="314" text-anchor="middle" class="mono">classroom_app.json</text>
+  <rect x="1380" y="400" width="130" height="130" class="box"/>
+  <text x="1445" y="444" text-anchor="middle" class="label">历史记录</text>
+  <text x="1445" y="470" text-anchor="middle" class="small">原图、预处理图、</text>
+  <text x="1445" y="492" text-anchor="middle" class="small">识别文本、导出格式</text>
+  <rect x="1380" y="580" width="130" height="140" class="box"/>
+  <text x="1445" y="624" text-anchor="middle" class="label">模型资源</text>
+  <text x="1445" y="650" text-anchor="middle" class="small">checkpoint</text>
+  <text x="1445" y="674" text-anchor="middle" class="small">vocab / logs</text>
+  <text x="1445" y="698" text-anchor="middle" class="small">训练评估文件</text>
+  <path d="M248 275 C290 275, 312 275, 364 275" class="arrow"/>
+  <path d="M248 605 C294 605, 314 575, 364 575" class="arrow"/>
+  <path d="M556 275 C610 275, 620 275, 678 275" class="arrow"/>
+  <path d="M556 425 C610 425, 620 430, 678 430" class="arrow"/>
+  <path d="M556 745 C610 745, 620 745, 678 745" class="arrow"/>
+  <path d="M922 275 C974 275, 990 275, 1046 275" class="arrow"/>
+  <path d="M922 430 C972 430, 992 430, 1046 430" class="arrow"/>
+  <path d="M922 590 C972 590, 992 590, 1046 590" class="arrow"/>
+  <path d="M922 755 C972 755, 992 755, 1046 755" class="arrow"/>
+  <path d="M1264 275 C1316 275, 1328 286, 1380 286" class="arrow"/>
+  <path d="M1264 430 C1310 430, 1330 465, 1380 465" class="arrow"/>
+  <path d="M1264 755 C1316 755, 1328 650, 1380 650" class="arrow"/>
+  <path d="M1155 650 C1155 870, 800 900, 800 846" class="dash"/>
+  <text x="866" y="900" class="small">系统形成“识别 + 求解 + 导出 + 历史管理”闭环</text>
+</svg>

@@ -1,0 +1,98 @@
+<mxfile host="app.diagrams.net" modified="2026-05-20T10:30:00.000Z" agent="OpenAI Codex" version="26.0.0">
+  <diagram id="system-architecture-tech-route" name="系统总体架构与技术路线图">
+    <mxGraphModel dx="1800" dy="950" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="2" value="系统总体架构与技术路线图" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Microsoft YaHei;fontSize=26;fontStyle=1;fontColor=#1F2937;" vertex="1" parent="1">
+          <mxGeometry x="450" y="30" width="700" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="3" value="围绕课堂公式录入场景，将输入采集、统一预处理、序列识别、多格式输出与勘误积累组织为完整技术闭环" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Microsoft YaHei;fontSize=13;fontColor=#6B7280;" vertex="1" parent="1">
+          <mxGeometry x="300" y="78" width="1000" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="4" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FBFCFE;strokeColor=#D6DEE8;strokeWidth=1.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="120" width="1520" height="720" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="10" value="&lt;div style='line-height:1.55'&gt;&lt;b style='font-size:18px;color:#1F2937'&gt;应用场景层&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:14px;color:#4B5563'&gt;课堂拍照上传&lt;br/&gt;在线手写输入&lt;br/&gt;教师与学生复用&lt;/span&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF4FF;strokeColor=#7BA8D6;strokeWidth=2;fontFamily=Microsoft YaHei;fontSize=14;fontColor=#374151;align=center;verticalAlign=middle;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="90" y="250" width="250" height="170" as="geometry"/>
+        </mxCell>
+        <mxCell id="11" value="&lt;div style='line-height:1.55'&gt;&lt;b style='font-size:18px;color:#1F2937'&gt;Web 交互层&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:14px;color:#4B5563'&gt;登录注册与角色校验&lt;br/&gt;拖拽上传与 Canvas 采集&lt;br/&gt;结果展示与复制导出&lt;/span&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EEF9F3;strokeColor=#75B18E;strokeWidth=2;fontFamily=Microsoft YaHei;fontSize=14;fontColor=#374151;align=center;verticalAlign=middle;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="410" y="210" width="290" height="210" as="geometry"/>
+        </mxCell>
+        <mxCell id="12" value="&lt;div style='line-height:1.55'&gt;&lt;b style='font-size:18px;color:#1F2937'&gt;后端处理层&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:14px;color:#4B5563'&gt;图像解码与通道统一&lt;br/&gt;灰度化、阈值分割、裁剪&lt;br/&gt;接口组织与结果回传&lt;/span&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF5E8;strokeColor=#D9A26C;strokeWidth=2;fontFamily=Microsoft YaHei;fontSize=14;fontColor=#374151;align=center;verticalAlign=middle;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="760" y="210" width="290" height="210" as="geometry"/>
+        </mxCell>
+        <mxCell id="13" value="&lt;div style='line-height:1.55'&gt;&lt;b style='font-size:18px;color:#1F2937'&gt;识别与转换层&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:14px;color:#4B5563'&gt;CNN + BiGRU + Decoder&lt;br/&gt;Beam Search 与注意力对齐&lt;br/&gt;LaTeX / Word / MathML 输出&lt;/span&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F1FF;strokeColor=#A48ED3;strokeWidth=2;fontFamily=Microsoft YaHei;fontSize=14;fontColor=#374151;align=center;verticalAlign=middle;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="1110" y="210" width="320" height="210" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="14" value="&lt;div style='line-height:1.6'&gt;&lt;b style='font-size:19px;color:#1F2937'&gt;数据积累与反馈层&lt;/b&gt;&lt;br/&gt;&lt;span style='font-size:14px;color:#4B5563'&gt;CROHME 训练数据与模型日志&lt;br/&gt;识别历史记录与导出文件&lt;br/&gt;勘误知识表与人工修正回写&lt;/span&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EEF3FF;strokeColor=#7D97D1;strokeWidth=2;fontFamily=Microsoft YaHei;fontSize=14;fontColor=#374151;align=center;verticalAlign=middle;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="500" y="540" width="560" height="170" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="15" value="形成“识别—导出—存储—纠错—再优化”的教学应用闭环" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Microsoft YaHei;fontSize=13;fontColor=#5B6472;" vertex="1" parent="1">
+          <mxGeometry x="520" y="725" width="520" height="24" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="20" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#5B7083;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="10" target="11">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#5B7083;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="11" target="12">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#5B7083;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="12" target="13">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#5B7083;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="11" target="14">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="555" y="470"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="24" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#5B7083;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="12" target="14">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="905" y="470"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="25" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#5B7083;strokeWidth=2;endArrow=block;endFill=1;" edge="1" parent="1" source="13" target="14">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1220" y="470"/>
+              <mxPoint x="960" y="470"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="26" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748B;strokeWidth=2;dashed=1;endArrow=block;endFill=1;" edge="1" parent="1" source="14" target="12">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1060" y="630"/>
+              <mxPoint x="1180" y="630"/>
+              <mxPoint x="1180" y="315"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="30" value="场景需求驱动" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Microsoft YaHei;fontSize=12;fontColor=#6B7280;" vertex="1" parent="1">
+          <mxGeometry x="320" y="300" width="110" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="31" value="统一数据处理链路" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Microsoft YaHei;fontSize=12;fontColor=#6B7280;" vertex="1" parent="1">
+          <mxGeometry x="665" y="260" width="140" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="32" value="序列识别与格式转换" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Microsoft YaHei;fontSize=12;fontColor=#6B7280;" vertex="1" parent="1">
+          <mxGeometry x="1010" y="260" width="150" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="33" value="历史沉淀 / 人工纠错 / 知识回灌" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontFamily=Microsoft YaHei;fontSize=12;fontColor=#6B7280;" vertex="1" parent="1">
+          <mxGeometry x="1090" y="590" width="210" height="22" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

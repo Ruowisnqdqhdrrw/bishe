@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="980" viewBox="0 0 1500 980">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f6f2eb"/>
+      <stop offset="100%" stop-color="#edf4f8"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" markerWidth="14" markerHeight="14" refX="11" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#355165"/>
+    </marker>
+    <style>
+      .title { font: 700 34px "Times New Roman", "Microsoft YaHei", serif; fill: #20303d; }
+      .subtitle { font: 500 17px "Times New Roman", "Microsoft YaHei", serif; fill: #56707e; }
+      .panel { fill: #ffffff; stroke: #d7dfe7; stroke-width: 1.4; rx: 22; ry: 22; filter: url(#shadow); }
+      .box { fill: #ffffff; stroke: #ccd7e0; stroke-width: 1.2; rx: 16; ry: 16; }
+      .label { font: 600 18px "Microsoft YaHei", sans-serif; fill: #233744; }
+      .small { font: 500 14px "Microsoft YaHei", sans-serif; fill: #607280; }
+      .arrow { stroke: #355165; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .note { font: 600 15px "Microsoft YaHei", sans-serif; fill: #8c5d2f; }
+    </style>
+  </defs>
+  <rect width="1500" height="980" fill="url(#bg)"/>
+  <text x="750" y="60" text-anchor="middle" class="title">图像预处理流程图</text>
+  <text x="750" y="90" text-anchor="middle" class="subtitle">Image Preprocessing Pipeline for Handwritten Formula Recognition</text>
+  <rect x="60" y="150" width="1380" height="760" class="panel"/>
+  <rect x="110" y="220" width="220" height="120" class="box"/>
+  <text x="220" y="266" text-anchor="middle" class="label">原始图像输入</text>
+  <text x="220" y="292" text-anchor="middle" class="small">上传图片 / 画板图片</text>
+  <rect x="420" y="220" width="220" height="120" class="box"/>
+  <text x="530" y="266" text-anchor="middle" class="label">通道统一</text>
+  <text x="530" y="292" text-anchor="middle" class="small">灰度图 / BGR / Alpha 兼容</text>
+  <rect x="730" y="220" width="220" height="120" class="box"/>
+  <text x="840" y="266" text-anchor="middle" class="label">灰度化与尺寸限制</text>
+  <text x="840" y="292" text-anchor="middle" class="small">超大图像按比例缩放</text>
+  <rect x="1040" y="220" width="280" height="120" class="box"/>
+  <text x="1180" y="266" text-anchor="middle" class="label">背景亮暗判断</text>
+  <text x="1180" y="292" text-anchor="middle" class="small">根据边界像素均值区分亮背景或暗背景</text>
+  <rect x="210" y="430" width="320" height="150" class="box"/>
+  <text x="370" y="474" text-anchor="middle" class="label">暗背景分支</text>
+  <text x="370" y="502" text-anchor="middle" class="small">Gaussian Blur</text>
+  <text x="370" y="526" text-anchor="middle" class="small">Otsu Threshold</text>
+  <text x="370" y="550" text-anchor="middle" class="small">Median Blur</text>
+  <rect x="690" y="430" width="420" height="150" class="box"/>
+  <text x="900" y="474" text-anchor="middle" class="label">亮背景分支</text>
+  <text x="900" y="502" text-anchor="middle" class="small">光照归一化 + CLAHE</text>
+  <text x="900" y="526" text-anchor="middle" class="small">Adaptive Gaussian Threshold</text>
+  <text x="900" y="550" text-anchor="middle" class="small">Median Blur + Morphology Close</text>
+  <rect x="240" y="680" width="260" height="120" class="box"/>
+  <text x="370" y="726" text-anchor="middle" class="label">连通域去噪</text>
+  <text x="370" y="752" text-anchor="middle" class="small">移除过小笔画碎片</text>
+  <rect x="620" y="680" width="260" height="120" class="box"/>
+  <text x="750" y="726" text-anchor="middle" class="label">前景区域裁剪</text>
+  <text x="750" y="752" text-anchor="middle" class="small">boundingRect + padding</text>
+  <rect x="1000" y="680" width="260" height="120" class="box"/>
+  <text x="1130" y="726" text-anchor="middle" class="label">笔画增强与标准化</text>
+  <text x="1130" y="752" text-anchor="middle" class="small">必要时加粗并居中填充画布</text>
+  <rect x="620" y="840" width="260" height="90" class="box"/>
+  <text x="750" y="892" text-anchor="middle" class="label">输出模型输入图像</text>
+  <path d="M330 280 L420 280" class="arrow"/>
+  <path d="M640 280 L730 280" class="arrow"/>
+  <path d="M950 280 L1040 280" class="arrow"/>
+  <path d="M1100 340 C1030 370, 980 396, 900 430" class="arrow"/>
+  <path d="M1150 340 C1010 378, 740 396, 370 430" class="arrow"/>
+  <text x="1030" y="372" class="note">亮背景</text>
+  <text x="720" y="392" class="note">暗背景</text>
+  <path d="M370 580 C370 634, 370 642, 370 680" class="arrow"/>
+  <path d="M900 580 C900 632, 462 632, 370 680" class="arrow"/>
+  <path d="M500 740 L620 740" class="arrow"/>
+  <path d="M880 740 L1000 740" class="arrow"/>
+  <path d="M1130 800 L1130 885 C1130 905, 930 905, 880 885" class="arrow"/>
+  <path d="M750 800 L750 840" class="arrow"/>
+  <text x="1320" y="750" class="small">说明：该流程包含前景提取和区域裁剪，但不执行显式字符级切分。</text>
+</svg>

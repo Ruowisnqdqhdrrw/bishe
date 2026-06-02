@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="1780" viewBox="0 0 980 1780">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f6f3ee"/>
+      <stop offset="100%" stop-color="#eef3f7"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="7" stdDeviation="9" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" markerWidth="14" markerHeight="14" refX="11" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#365468"/>
+    </marker>
+    <style>
+      .title { font: 700 34px "Times New Roman", "Microsoft YaHei", serif; fill: #223340; }
+      .subtitle { font: 500 17px "Times New Roman", "Microsoft YaHei", serif; fill: #5d7382; }
+      .node { fill: #ffffff; stroke: #d1dae2; stroke-width: 1.3; rx: 20; ry: 20; filter: url(#shadow); }
+      .decision { fill: #fffdfa; stroke: #cdb89b; stroke-width: 1.3; filter: url(#shadow); }
+      .text { font: 600 19px "Microsoft YaHei", sans-serif; fill: #253846; }
+      .small { font: 500 14px "Microsoft YaHei", sans-serif; fill: #617482; }
+      .arrow { stroke: #365468; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .tip { font: 600 15px "Microsoft YaHei", sans-serif; fill: #865631; }
+    </style>
+  </defs>
+  <rect width="980" height="1780" fill="url(#bg)"/>
+  <text x="490" y="58" text-anchor="middle" class="title">软件业务流程图</text>
+  <text x="490" y="88" text-anchor="middle" class="subtitle">Software Business Flow for Classroom-Oriented Formula Recognition</text>
+  <rect x="350" y="130" width="280" height="86" class="node"/>
+  <text x="490" y="180" text-anchor="middle" class="text">开始</text>
+  <rect x="290" y="260" width="400" height="96" class="node"/>
+  <text x="490" y="306" text-anchor="middle" class="text">用户登录或注册</text>
+  <text x="490" y="332" text-anchor="middle" class="small">管理员 / 教师 / 学生身份进入系统</text>
+  <polygon points="490,405 640,490 490,575 340,490" class="decision"/>
+  <text x="490" y="484" text-anchor="middle" class="text">选择识别方式</text>
+  <text x="490" y="510" text-anchor="middle" class="small">上传图片 or 在线手写</text>
+  <rect x="110" y="640" width="300" height="110" class="node"/>
+  <text x="260" y="686" text-anchor="middle" class="text">图片上传识别</text>
+  <text x="260" y="712" text-anchor="middle" class="small">拖拽或选择文件 -> /upload</text>
+  <rect x="570" y="640" width="300" height="110" class="node"/>
+  <text x="720" y="686" text-anchor="middle" class="text">在线手写识别</text>
+  <text x="720" y="712" text-anchor="middle" class="small">Canvas 采集 -> base64 -> /recognize_sketch</text>
+  <rect x="290" y="820" width="400" height="96" class="node"/>
+  <text x="490" y="866" text-anchor="middle" class="text">图像读取与预处理</text>
+  <text x="490" y="892" text-anchor="middle" class="small">灰度化、二值化、去噪、裁剪、标准化</text>
+  <rect x="290" y="970" width="400" height="96" class="node"/>
+  <text x="490" y="1016" text-anchor="middle" class="text">端到端模型识别</text>
+  <text x="490" y="1042" text-anchor="middle" class="small">整图输入 -> token 序列（近似 LaTeX）</text>
+  <rect x="290" y="1120" width="400" height="96" class="node"/>
+  <text x="490" y="1166" text-anchor="middle" class="text">表达式转换与格式化</text>
+  <text x="490" y="1192" text-anchor="middle" class="small">LaTeX/SymPy、Word Linear、MathML、PNG</text>
+  <polygon points="490,1265 640,1350 490,1435 340,1350" class="decision"/>
+  <text x="490" y="1344" text-anchor="middle" class="text">是否进行求解</text>
+  <text x="490" y="1370" text-anchor="middle" class="small">公式化简 / 方程求解</text>
+  <rect x="110" y="1490" width="300" height="110" class="node"/>
+  <text x="260" y="1536" text-anchor="middle" class="text">直接输出识别结果</text>
+  <text x="260" y="1562" text-anchor="middle" class="small">展示 LaTeX、Word、PNG 等结果</text>
+  <rect x="570" y="1490" width="300" height="110" class="node"/>
+  <text x="720" y="1536" text-anchor="middle" class="text">调用求解模块</text>
+  <text x="720" y="1562" text-anchor="middle" class="small">solve / solveset / simplify</text>
+  <rect x="290" y="1640" width="400" height="96" class="node"/>
+  <text x="490" y="1686" text-anchor="middle" class="text">写入历史记录并结束</text>
+  <text x="490" y="1712" text-anchor="middle" class="small">保存原图、预处理图、识别结果与导出内容</text>
+  <path d="M490 216 L490 260" class="arrow"/>
+  <path d="M490 356 L490 405" class="arrow"/>
+  <path d="M395 547 C330 595, 300 610, 260 640" class="arrow"/>
+  <path d="M585 547 C650 595, 680 610, 720 640" class="arrow"/>
+  <text x="325" y="595" class="tip">上传</text>
+  <text x="642" y="595" class="tip">手写</text>
+  <path d="M260 750 C260 800, 380 808, 490 820" class="arrow"/>
+  <path d="M720 750 C720 800, 600 808, 490 820" class="arrow"/>
+  <path d="M490 916 L490 970" class="arrow"/>
+  <path d="M490 1066 L490 1120" class="arrow"/>
+  <path d="M490 1216 L490 1265" class="arrow"/>
+  <path d="M395 1407 C330 1450, 300 1462, 260 1490" class="arrow"/>
+  <path d="M585 1407 C650 1450, 680 1462, 720 1490" class="arrow"/>
+  <text x="320" y="1460" class="tip">否</text>
+  <text x="650" y="1460" class="tip">是</text>
+  <path d="M260 1600 C260 1636, 382 1638, 490 1640" class="arrow"/>
+  <path d="M720 1600 C720 1636, 598 1638, 490 1640" class="arrow"/>
+</svg>

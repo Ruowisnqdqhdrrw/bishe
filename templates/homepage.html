@@ -1,0 +1,293 @@
+{% extends "base.html" %}
+
+{% block title %}首页 - 手写数学公式识别系统{% endblock %}
+
+{% block head %}
+<style>
+    .hero {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 22px;
+        margin-bottom: 22px;
+    }
+
+    .hero-card,
+    .entry-card,
+    #sketch-pad {
+        background: rgba(255, 255, 255, 0.96);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        border-radius: 28px;
+        padding: 28px;
+        box-shadow: 0 20px 60px rgba(33, 64, 102, 0.08);
+    }
+
+    .hero-card h1 {
+        margin: 0 0 12px;
+        font-size: clamp(34px, 5vw, 52px);
+        line-height: 1.08;
+    }
+
+    .hero-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.7;
+    }
+
+    .entry-grid {
+        display: grid;
+        gap: 18px;
+    }
+
+    .entry-card h2,
+    .sketch-header h2 {
+        margin: 0 0 10px;
+        font-size: 26px;
+    }
+
+    .entry-card p {
+        margin: 0 0 16px;
+        color: var(--muted);
+        line-height: 1.6;
+    }
+
+    #sketch-pad {
+        display: none;
+    }
+
+    .sketch-header {
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-bottom: 16px;
+    }
+
+    .sketch-tools {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .range-wrap {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        padding: 10px 14px;
+        border: 1px solid var(--line);
+        background: #f8fbff;
+        border-radius: 14px;
+        color: var(--muted);
+    }
+
+    #sketch-canvas {
+        width: 100%;
+        height: 360px;
+        border-radius: 22px;
+        border: 2px solid #1d2733;
+        background: #ffffff;
+        cursor: crosshair;
+        display: block;
+    }
+
+    .result-panel {
+        display: grid;
+        gap: 12px;
+        margin-top: 16px;
+    }
+
+    .result-panel input,
+    .result-panel textarea {
+        width: 100%;
+        border-radius: 14px;
+        border: 1px solid var(--line);
+        padding: 12px 14px;
+        font-size: 17px;
+        background: #fbfdff;
+        resize: vertical;
+    }
+
+    .result-panel textarea {
+        min-height: 88px;
+    }
+
+    .button-row {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .correction-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 20;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background: rgba(20, 38, 58, 0.36);
+    }
+
+    .correction-dialog {
+        width: min(880px, calc(100vw - 40px));
+        max-height: calc(100vh - 48px);
+        overflow: auto;
+        display: grid;
+        gap: 20px;
+        padding: 30px;
+        border-radius: 22px;
+        border: 1px solid var(--line);
+        background: #ffffff;
+        box-shadow: 0 26px 80px rgba(20, 38, 58, 0.22);
+    }
+
+    .correction-dialog h3 {
+        margin: 0;
+        font-size: 26px;
+    }
+
+    .correction-dialog p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.6;
+    }
+
+    .correction-dialog input {
+        width: 100%;
+        min-height: 54px;
+        border-radius: 14px;
+        border: 1px solid var(--line);
+        padding: 14px 16px;
+        font-size: 18px;
+        background: #fbfdff;
+    }
+
+    .field-label {
+        margin: 4px 0 8px;
+        font-size: 14px;
+        color: var(--muted);
+    }
+
+    .correction-options {
+        display: grid;
+        gap: 12px;
+        max-height: 280px;
+        overflow: auto;
+        padding-right: 4px;
+    }
+
+    .correction-option {
+        width: 100%;
+        min-height: 54px;
+        padding: 13px 16px;
+        justify-content: flex-start;
+        white-space: normal;
+        text-align: left;
+        line-height: 1.35;
+        font-size: 16px;
+    }
+
+    .export-box {
+        display: grid;
+        gap: 10px;
+        padding: 14px;
+        border-radius: 18px;
+        border: 1px solid var(--line);
+        background: #f9fbff;
+    }
+
+    .export-box strong {
+        font-size: 16px;
+    }
+
+    .export-box small {
+        color: var(--muted);
+    }
+
+    @media (max-width: 980px) {
+        .hero {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="hero">
+    <section class="hero-card">
+        <h1>课堂里的手写公式识别</h1>
+        <p>支持老师与学生账号登录、识别历史留存、在线手写、图片拖拽上传，以及 LaTeX、Word、PNG 三种结果复制。</p>
+    </section>
+
+    <div class="entry-grid">
+        <section class="entry-card">
+            <h2>图片上传识别</h2>
+            <p>点击进入拖拽上传页面，选择图片后自动上传并开始识别。</p>
+            <a class="button soft" href="{{ url_for('upload_image') }}">进入上传页面</a>
+        </section>
+
+        <section class="entry-card">
+            <h2>在线手写识别</h2>
+            <p>在白底画布上书写公式，识别后可继续手动编辑结果并直接复制。</p>
+            <button class="button secondary" type="button" onclick="toggleSketchPad()">打开在线手写板</button>
+        </section>
+    </div>
+</div>
+
+<section id="sketch-pad">
+    <div class="sketch-header">
+        <h2>在线手写画布</h2>
+        <div class="sketch-tools">
+            <div class="range-wrap">
+                <label for="pen-width">笔画粗细</label>
+                <input id="pen-width" type="range" min="6" max="24" step="1" value="12">
+                <span id="pen-width-value">12</span>
+            </div>
+            <button class="button ghost" type="button" onclick="clearCanvas()">清空画布</button>
+            <button class="button ghost" type="button" onclick="toggleSketchPad()">收起画布</button>
+        </div>
+    </div>
+
+    <canvas id="sketch-canvas" width="960" height="360"></canvas>
+
+    <div class="result-panel">
+        <div class="button-row">
+            <button class="button primary" type="button" onclick="recognizeSketch()">识别公式</button>
+        </div>
+        <input type="text" id="sketch-result" placeholder="识别结果可直接修改">
+        <div class="export-box">
+            <strong>识别结果复制区</strong>
+            <textarea id="sketch-word-linear" placeholder="这里展示 Word 粘贴预览，复制时会自动使用 MathML"></textarea>
+            <div class="button-row">
+                <button class="button ghost" type="button" onclick="copySketchLatex()">复制 LaTeX</button>
+                <button class="button ghost" type="button" onclick="copyWordFormula()">复制 Word</button>
+                <button class="button ghost" type="button" onclick="copySketchPng()">复制 PNG</button>
+                <button id="sketch-correction-button" class="button ghost" type="button" onclick="openSketchCorrectionDialog()" disabled>识别有误</button>
+            </div>
+            <small id="sketch-history-hint"></small>
+        </div>
+    </div>
+</section>
+
+<div id="sketch-correction-modal" class="correction-modal" role="dialog" aria-modal="true" aria-labelledby="sketch-correction-title">
+    <div class="correction-dialog">
+        <h3 id="sketch-correction-title">提交正确公式</h3>
+        <p>可以从勘误表推荐中选择，也可以手动输入正确公式。</p>
+        <div>
+            <div class="field-label">勘误表推荐</div>
+            <div id="sketch-correction-options" class="correction-options"></div>
+        </div>
+        <div>
+            <div class="field-label">手动输入正确公式</div>
+            <input id="sketch-correction-input" type="text" placeholder="请输入正确公式">
+        </div>
+        <div class="button-row">
+            <button class="button primary" type="button" onclick="submitSketchManualCorrection()">保存纠错</button>
+            <button class="button ghost" type="button" onclick="closeSketchCorrectionDialog()">取消</button>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='canvas_sketch.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,215 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1040" viewBox="0 0 1600 1040" role="img" aria-labelledby="title desc">
+  <title id="title">Handwritten Formula Recognition System Architecture</title>
+  <desc id="desc">论文风格的手写公式识别系统结构图，展示输入、图像预处理、端到端识别、表达式后处理、方程求解与结果输出流程。</desc>
+
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f7f4ef"/>
+      <stop offset="100%" stop-color="#eef2f6"/>
+    </linearGradient>
+    <linearGradient id="panelA" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fffaf1"/>
+      <stop offset="100%" stop-color="#f5ede1"/>
+    </linearGradient>
+    <linearGradient id="panelB" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5faf8"/>
+      <stop offset="100%" stop-color="#e7f2ec"/>
+    </linearGradient>
+    <linearGradient id="panelC" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5f8fc"/>
+      <stop offset="100%" stop-color="#e6eef8"/>
+    </linearGradient>
+    <linearGradient id="panelD" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fcf7f1"/>
+      <stop offset="100%" stop-color="#f4e8da"/>
+    </linearGradient>
+    <linearGradient id="panelE" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f9f7fc"/>
+      <stop offset="100%" stop-color="#ece7f5"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" markerWidth="16" markerHeight="16" refX="12" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#3b556b"/>
+    </marker>
+    <style>
+      .title { font: 700 34px "Times New Roman", "Noto Serif SC", serif; fill: #21303d; }
+      .subtitle { font: 500 17px "Times New Roman", "Noto Serif SC", serif; fill: #51616f; }
+      .section { font: 700 22px "Times New Roman", "Noto Serif SC", serif; fill: #20303d; }
+      .en { font: 500 14px "Times New Roman", serif; fill: #627484; }
+      .body { font: 500 17px "Noto Serif SC", "Microsoft YaHei", serif; fill: #243542; }
+      .small { font: 500 14px "Noto Serif SC", "Microsoft YaHei", serif; fill: #4d5f6d; }
+      .mini { font: 500 13px "Times New Roman", "Noto Serif SC", serif; fill: #536573; }
+      .chip { font: 600 14px "Noto Serif SC", "Microsoft YaHei", serif; fill: #274155; }
+      .note { font: 500 15px "Noto Serif SC", "Microsoft YaHei", serif; fill: #5a4532; }
+      .mono { font: 600 14px "Consolas", "Courier New", monospace; fill: #284052; }
+      .panel { stroke: #d4dbe3; stroke-width: 1.4; rx: 24; ry: 24; filter: url(#shadow); }
+      .box { fill: #ffffff; stroke: #cdd7e1; stroke-width: 1.3; rx: 18; ry: 18; }
+      .subbox { fill: #ffffff; stroke: #d5dde6; stroke-width: 1.1; rx: 14; ry: 14; }
+      .chipbox { fill: #f7fbff; stroke: #c9d8e5; stroke-width: 1; rx: 999; ry: 999; }
+      .arrow { stroke: #3b556b; stroke-width: 3.2; fill: none; marker-end: url(#arrow); }
+      .thin { stroke: #5b768c; stroke-width: 2.2; fill: none; marker-end: url(#arrow); }
+      .dash { stroke: #a56c34; stroke-width: 2.2; stroke-dasharray: 8 8; fill: none; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1600" height="980" fill="url(#bg)"/>
+
+  <text x="800" y="62" text-anchor="middle" class="title">手写数学公式识别与求解系统结构图</text>
+  <text x="800" y="92" text-anchor="middle" class="subtitle">Architecture of the Classroom-Oriented Handwritten Mathematical Formula Recognition System</text>
+
+  <rect x="60" y="130" width="250" height="740" fill="url(#panelA)" class="panel"/>
+  <rect x="360" y="130" width="330" height="740" fill="url(#panelB)" class="panel"/>
+  <rect x="740" y="130" width="360" height="740" fill="url(#panelC)" class="panel"/>
+  <rect x="1150" y="130" width="200" height="740" fill="url(#panelD)" class="panel"/>
+  <rect x="1380" y="130" width="160" height="740" fill="url(#panelE)" class="panel"/>
+
+  <text x="185" y="175" text-anchor="middle" class="section">1. 输入层</text>
+  <text x="185" y="198" text-anchor="middle" class="en">Input Layer</text>
+
+  <text x="525" y="175" text-anchor="middle" class="section">2. 图像预处理层</text>
+  <text x="525" y="198" text-anchor="middle" class="en">Image Preprocessing</text>
+
+  <text x="920" y="175" text-anchor="middle" class="section">3. 端到端识别层</text>
+  <text x="920" y="198" text-anchor="middle" class="en">End-to-End Recognition</text>
+
+  <text x="1250" y="175" text-anchor="middle" class="section">4. 后处理与求解</text>
+  <text x="1250" y="198" text-anchor="middle" class="en">Post-processing</text>
+
+  <text x="1460" y="175" text-anchor="middle" class="section">5. 输出层</text>
+  <text x="1460" y="198" text-anchor="middle" class="en">Outputs</text>
+
+  <rect x="92" y="235" width="186" height="148" class="box"/>
+  <text x="185" y="273" text-anchor="middle" class="body">图像上传</text>
+  <text x="185" y="296" text-anchor="middle" class="en">/upload</text>
+  <rect x="120" y="318" width="130" height="36" class="chipbox"/>
+  <text x="185" y="341" text-anchor="middle" class="chip">拍照 / 文件输入</text>
+
+  <rect x="92" y="430" width="186" height="148" class="box"/>
+  <text x="185" y="468" text-anchor="middle" class="body">手写画板</text>
+  <text x="185" y="491" text-anchor="middle" class="en">/recognize_sketch</text>
+  <rect x="120" y="513" width="130" height="36" class="chipbox"/>
+  <text x="185" y="536" text-anchor="middle" class="chip">Base64 草图输入</text>
+
+  <rect x="92" y="625" width="186" height="162" class="box"/>
+  <text x="185" y="664" text-anchor="middle" class="body">统一图像读取</text>
+  <text x="185" y="688" text-anchor="middle" class="mono">decode_image_bytes()</text>
+  <text x="185" y="712" text-anchor="middle" class="mono">save_image_unicode()</text>
+  <text x="185" y="746" text-anchor="middle" class="small">保留原始图像，写入历史记录</text>
+
+  <rect x="392" y="228" width="266" height="92" class="box"/>
+  <text x="525" y="266" text-anchor="middle" class="body">灰度化与背景判断</text>
+  <text x="525" y="289" text-anchor="middle" class="small">BGR/Alpha 统一、亮暗背景估计</text>
+
+  <rect x="392" y="348" width="266" height="136" class="box"/>
+  <text x="525" y="384" text-anchor="middle" class="body">二值化与增强</text>
+  <text x="525" y="410" text-anchor="middle" class="small">亮背景: 光照归一化 + 自适应阈值</text>
+  <text x="525" y="434" text-anchor="middle" class="small">暗背景: Otsu 阈值 + 中值滤波</text>
+  <text x="525" y="458" text-anchor="middle" class="small">形态学闭运算强化笔迹结构</text>
+
+  <rect x="392" y="514" width="266" height="136" class="box"/>
+  <text x="525" y="550" text-anchor="middle" class="body">前景清理与有效区域提取</text>
+  <text x="525" y="576" text-anchor="middle" class="small">连通域去噪</text>
+  <text x="525" y="600" text-anchor="middle" class="small">boundingRect 裁剪公式区域</text>
+  <text x="525" y="624" text-anchor="middle" class="small">必要时加粗细笔迹</text>
+
+  <rect x="392" y="680" width="266" height="128" class="box"/>
+  <text x="525" y="716" text-anchor="middle" class="body">标准化画布</text>
+  <text x="525" y="742" text-anchor="middle" class="small">居中填充到白字黑底二值图</text>
+  <text x="525" y="766" text-anchor="middle" class="small">生成模型友好的输入张量</text>
+
+  <rect x="772" y="226" width="296" height="122" class="box"/>
+  <text x="920" y="264" text-anchor="middle" class="body">编码器</text>
+  <text x="920" y="289" text-anchor="middle" class="en">CNN + BiGRU Encoder</text>
+  <text x="920" y="314" text-anchor="middle" class="small">卷积残差块提取二维特征</text>
+  <text x="920" y="338" text-anchor="middle" class="small">高度压缩后沿宽度展开为序列</text>
+
+  <rect x="772" y="382" width="296" height="144" class="box"/>
+  <text x="920" y="420" text-anchor="middle" class="body">解码器</text>
+  <text x="920" y="445" text-anchor="middle" class="en">LSTM / Transformer Decoder</text>
+  <text x="920" y="470" text-anchor="middle" class="small">跨注意力对齐编码特征</text>
+  <text x="920" y="494" text-anchor="middle" class="small">逐步生成公式 token 序列</text>
+
+  <rect x="772" y="560" width="296" height="112" class="box"/>
+  <text x="920" y="598" text-anchor="middle" class="body">序列搜索</text>
+  <text x="920" y="623" text-anchor="middle" class="en">Beam Search / Greedy Decode</text>
+  <text x="920" y="648" text-anchor="middle" class="small">输出近似 LaTeX 的 token 串</text>
+
+  <rect x="772" y="700" width="296" height="114" class="box"/>
+  <text x="920" y="738" text-anchor="middle" class="body">识别结果</text>
+  <text x="920" y="764" text-anchor="middle" class="mono">raw_text = predict_text(...)</text>
+  <text x="920" y="788" text-anchor="middle" class="small">输出 token 串供后续表达式转换</text>
+
+  <rect x="1180" y="244" width="140" height="176" class="box"/>
+  <text x="1250" y="282" text-anchor="middle" class="body">表达式转换</text>
+  <text x="1250" y="306" text-anchor="middle" class="mono">latex_to_sympy()</text>
+  <text x="1250" y="336" text-anchor="middle" class="small">处理分式、根式、上下标、</text>
+  <text x="1250" y="358" text-anchor="middle" class="small">三角函数与符号映射</text>
+  <text x="1250" y="388" text-anchor="middle" class="small">得到可计算的 SymPy 表达式</text>
+
+  <rect x="1180" y="458" width="140" height="176" class="box"/>
+  <text x="1250" y="496" text-anchor="middle" class="body">方程求解</text>
+  <text x="1250" y="520" text-anchor="middle" class="mono">solve_equation()</text>
+  <text x="1250" y="550" text-anchor="middle" class="small">按变量类型选择</text>
+  <text x="1250" y="572" text-anchor="middle" class="small">simplify / solve / solveset</text>
+  <text x="1250" y="602" text-anchor="middle" class="small">支持表达式化简与等式求解</text>
+
+  <rect x="1180" y="668" width="140" height="142" class="box"/>
+  <text x="1250" y="706" text-anchor="middle" class="body">格式化输出</text>
+  <text x="1250" y="730" text-anchor="middle" class="small">显示公式、Word Linear、</text>
+  <text x="1250" y="752" text-anchor="middle" class="small">MathML 与历史记录写入</text>
+
+  <rect x="1402" y="256" width="116" height="120" class="box"/>
+  <text x="1460" y="295" text-anchor="middle" class="body">公式显示</text>
+  <text x="1460" y="320" text-anchor="middle" class="small">LaTeX 渲染</text>
+  <text x="1460" y="344" text-anchor="middle" class="small">PNG 预览</text>
+
+  <rect x="1402" y="410" width="116" height="120" class="box"/>
+  <text x="1460" y="449" text-anchor="middle" class="body">可编辑文本</text>
+  <text x="1460" y="474" text-anchor="middle" class="small">Word Linear</text>
+  <text x="1460" y="498" text-anchor="middle" class="small">MathML</text>
+
+  <rect x="1402" y="564" width="116" height="120" class="box"/>
+  <text x="1460" y="603" text-anchor="middle" class="body">求解结果</text>
+  <text x="1460" y="628" text-anchor="middle" class="small">数值化简</text>
+  <text x="1460" y="652" text-anchor="middle" class="small">方程解集</text>
+
+  <rect x="1402" y="714" width="116" height="96" class="box"/>
+  <text x="1460" y="750" text-anchor="middle" class="body">历史记录</text>
+  <text x="1460" y="776" text-anchor="middle" class="small">原图 + 预处理图</text>
+
+  <path d="M278 309 C320 309, 338 274, 392 274" class="arrow"/>
+  <path d="M278 504 C322 504, 340 430, 392 430" class="arrow"/>
+  <path d="M278 706 C330 706, 350 746, 392 744" class="arrow"/>
+
+  <path d="M525 320 L525 348" class="arrow"/>
+  <path d="M525 484 L525 514" class="arrow"/>
+  <path d="M525 650 L525 680" class="arrow"/>
+
+  <path d="M658 744 C700 744, 718 758, 772 757" class="arrow"/>
+  <path d="M920 348 L920 382" class="arrow"/>
+  <path d="M920 526 L920 560" class="arrow"/>
+  <path d="M920 672 L920 706" class="arrow"/>
+
+  <path d="M1068 757 C1116 757, 1122 332, 1180 332" class="arrow"/>
+  <path d="M1250 420 L1250 458" class="arrow"/>
+  <path d="M1250 634 L1250 672" class="arrow"/>
+
+  <path d="M1320 312 C1350 312, 1362 316, 1402 316" class="arrow"/>
+  <path d="M1320 546 C1350 546, 1362 470, 1402 470" class="arrow"/>
+  <path d="M1320 546 C1350 546, 1362 624, 1402 624" class="arrow"/>
+  <path d="M1320 740 C1350 740, 1362 763, 1402 763" class="arrow"/>
+
+  <rect x="792" y="874" width="256" height="54" class="chipbox"/>
+  <text x="920" y="907" text-anchor="middle" class="chip">整图输入 -> token 序列，无显式字符级分割</text>
+
+  <path d="M658 582 C724 582, 742 904, 792 901" class="dash"/>
+  <text x="640" y="560" class="note">注：此处仅进行连通域去噪与区域裁剪，</text>
+  <text x="652" y="582" class="note">属于预处理，不是传统字符分割识别流程。</text>
+
+  <rect x="98" y="944" width="1420" height="74" fill="#fffdfa" stroke="#d8c5ad" stroke-width="1.2" rx="18" ry="18"/>
+  <text x="118" y="974" class="mini">Figure note:</text>
+  <text x="208" y="974" class="small">该系统以整幅公式图像为输入，经过二值化、去噪、前景裁剪与标准化后，直接送入端到端模型识别公式序列，再完成 SymPy 转换、方程求解与多格式结果输出。</text>
+  <text x="208" y="1000" class="small">可作为论文中的“系统总体结构图”或“公式识别处理流程图”使用。</text>
+</svg>

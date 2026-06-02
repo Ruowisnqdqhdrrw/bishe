@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f7f3ec"/>
+      <stop offset="100%" stop-color="#edf4f8"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" markerWidth="14" markerHeight="14" refX="11" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#365266"/>
+    </marker>
+    <style>
+      .title { font: 700 34px "Times New Roman", "Microsoft YaHei", serif; fill: #233340; }
+      .subtitle { font: 500 17px "Times New Roman", "Microsoft YaHei", serif; fill: #5a7180; }
+      .panel { fill: #ffffff; stroke: #d7dfe6; stroke-width: 1.4; rx: 22; ry: 22; filter: url(#shadow); }
+      .box { fill: #ffffff; stroke: #cad6e0; stroke-width: 1.2; rx: 16; ry: 16; }
+      .node { fill: #f9fbff; stroke: #bfd1df; stroke-width: 1.1; rx: 12; ry: 12; }
+      .label { font: 600 18px "Microsoft YaHei", sans-serif; fill: #243744; }
+      .small { font: 500 14px "Microsoft YaHei", sans-serif; fill: #60717f; }
+      .arrow { stroke: #365266; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect width="1600" height="980" fill="url(#bg)"/>
+  <text x="800" y="58" text-anchor="middle" class="title">关键改进技术原理图</text>
+  <text x="800" y="88" text-anchor="middle" class="subtitle">Principles of Core Improvements in the V3 Recognition Model</text>
+  <rect x="70" y="150" width="460" height="740" class="panel"/>
+  <text x="300" y="190" text-anchor="middle" class="label">SE 注意力模块</text>
+  <rect x="118" y="250" width="120" height="90" class="node"/>
+  <text x="178" y="304" text-anchor="middle" class="label">输入特征</text>
+  <rect x="280" y="250" width="140" height="90" class="node"/>
+  <text x="350" y="290" text-anchor="middle" class="label">Global AvgPool</text>
+  <text x="350" y="316" text-anchor="middle" class="small">通道压缩</text>
+  <rect x="200" y="400" width="200" height="100" class="node"/>
+  <text x="300" y="442" text-anchor="middle" class="label">FC -> ReLU -> FC</text>
+  <text x="300" y="468" text-anchor="middle" class="small">学习通道权重</text>
+  <rect x="200" y="560" width="200" height="100" class="node"/>
+  <text x="300" y="602" text-anchor="middle" class="label">Sigmoid 归一化</text>
+  <text x="300" y="628" text-anchor="middle" class="small">得到重要性系数</text>
+  <rect x="200" y="720" width="200" height="100" class="node"/>
+  <text x="300" y="762" text-anchor="middle" class="label">通道重标定</text>
+  <text x="300" y="788" text-anchor="middle" class="small">增强关键公式笔画特征</text>
+  <path d="M238 295 L280 295" class="arrow"/>
+  <path d="M350 340 L350 400" class="arrow"/>
+  <path d="M300 500 L300 560" class="arrow"/>
+  <path d="M300 660 L300 720" class="arrow"/>
+  <rect x="570" y="150" width="460" height="740" class="panel"/>
+  <text x="800" y="190" text-anchor="middle" class="label">Coverage Attention 机制</text>
+  <rect x="618" y="250" width="150" height="90" class="node"/>
+  <text x="693" y="304" text-anchor="middle" class="label">Encoder 序列</text>
+  <rect x="830" y="250" width="150" height="90" class="node"/>
+  <text x="905" y="304" text-anchor="middle" class="label">Decoder 状态</text>
+  <rect x="680" y="400" width="240" height="100" class="node"/>
+  <text x="800" y="442" text-anchor="middle" class="label">多头注意力打分</text>
+  <text x="800" y="468" text-anchor="middle" class="small">融合当前解码状态与编码特征</text>
+  <rect x="680" y="560" width="240" height="100" class="node"/>
+  <text x="800" y="602" text-anchor="middle" class="label">Coverage 向量累积</text>
+  <text x="800" y="628" text-anchor="middle" class="small">记录历史关注区域</text>
+  <rect x="680" y="720" width="240" height="100" class="node"/>
+  <text x="800" y="762" text-anchor="middle" class="label">抑制重复与漏读</text>
+  <text x="800" y="788" text-anchor="middle" class="small">提高长公式结构识别稳定性</text>
+  <path d="M768 295 L830 295" class="arrow"/>
+  <path d="M693 340 C693 382, 740 392, 770 400" class="arrow"/>
+  <path d="M905 340 C905 382, 860 392, 830 400" class="arrow"/>
+  <path d="M800 500 L800 560" class="arrow"/>
+  <path d="M800 660 L800 720" class="arrow"/>
+  <rect x="1070" y="150" width="460" height="740" class="panel"/>
+  <text x="1300" y="190" text-anchor="middle" class="label">Beam Search 解码</text>
+  <rect x="1118" y="250" width="364" height="110" class="box"/>
+  <text x="1300" y="294" text-anchor="middle" class="label">步骤 1：初始化</text>
+  <text x="1300" y="320" text-anchor="middle" class="small">以 &lt;bos&gt; 为起点建立多个候选序列</text>
+  <rect x="1118" y="410" width="364" height="110" class="box"/>
+  <text x="1300" y="454" text-anchor="middle" class="label">步骤 2：扩展候选</text>
+  <text x="1300" y="480" text-anchor="middle" class="small">每步保留概率较高的 K 条路径</text>
+  <rect x="1118" y="570" width="364" height="110" class="box"/>
+  <text x="1300" y="614" text-anchor="middle" class="label">步骤 3：长度归一化</text>
+  <text x="1300" y="640" text-anchor="middle" class="small">缓解短序列偏好，提高整体表达式质量</text>
+  <rect x="1118" y="730" width="364" height="110" class="box"/>
+  <text x="1300" y="774" text-anchor="middle" class="label">步骤 4：输出最优序列</text>
+  <text x="1300" y="800" text-anchor="middle" class="small">比 Greedy Decode 更关注全局最优</text>
+  <path d="M1300 360 L1300 410" class="arrow"/>
+  <path d="M1300 520 L1300 570" class="arrow"/>
+  <path d="M1300 680 L1300 730" class="arrow"/>
+</svg>
