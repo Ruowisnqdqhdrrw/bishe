@@ -1,0 +1,51 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+.venv_train/
+.venv_web/
+venv/
+env/
+ENV/
+
+# Local environment files
+.env
+.env.*
+
+# IDE and editor settings
+.idea/
+.vscode/
+.claude/
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Training data, model checkpoints, and generated artifacts
+data/
+checkpoints_e2e/
+checkpoints_e2e_v3/
+logs/
+outputs/
+tmp/
+tmp_chapter_summaries/
+*.ckpt
+*.pt
+*.pth
+*.onnx
+*.h5
+
+# Runtime-generated files
+static/history/
+*.db
+*.sqlite
+*.sqlite3
+*.log
