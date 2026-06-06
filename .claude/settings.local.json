@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python:*)",
+      "mcp__ide__getDiagnostics",
+      "Bash(while read f)",
+      "Bash(do file \"D:/CROHME/CROHME/train/img/$f\")",
+      "Bash(done)",
+      "Bash(awk:*)",
+      "Bash(python3:*)",
+      "Bash(where:*)",
+      "Bash(\"D:/python/python3.11.3/python.exe\" -c \"import cv2, numpy as np; print\\(''cv2 ok''\\); from PIL import Image, ImageDraw, ImageFont; print\\(''PIL ok''\\)\")",
+      "Bash(sort:*)",
+      "Bash(\"D:/python/python3.11.3/python.exe\" -c:*)",
+      "Bash(shuf:*)"
+    ]
+  }
+}

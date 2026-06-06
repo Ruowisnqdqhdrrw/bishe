@@ -1,0 +1,215 @@
+﻿Diagnose log at 2026-06-06T09:56:56Z
+
+AppPath: C:\Program Files\Git\mingw64\bin\git-credential-manager.exe
+InstallDir: C:\Program Files\Git\mingw64\bin\
+Version: 2.6.1+786ab03440ddc82e807a97c0e540f5247e44cec6
+
+------------
+Diagnostic: Environment
+Skipped: False
+Success: True
+Exception: None
+Log:
+OSType: Windows
+OSVersion: 10.0 (build 26100)
+Reading environment variables... OK
+ Variables:
+HOMEPATH=\Users\19892
+DriverData=C:\Windows\System32\Drivers\DriverData
+COMPUTERNAME=LIU123
+GIT_TRACE2_PARENT_SID=5006db68-78c0-4418-a4e0-5bf2ea8243dd
+CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files
+WEBSTORM_VM_OPTIONS=D:\BaiduNetdiskDownload\idea\jetbra-pojie\win2021-2025\vmoptions\webstorm.vmoptions
+ProgramW6432=C:\Program Files
+OneDrive=C:\Users\19892\OneDrive
+CODEX_THREAD_ID=019e9c3d-ac4a-70d2-bfba-a91722dfa26e
+ZSH_TMUX_AUTOSTART=false
+LOG_FORMAT=json
+PyCharm=D:\PyCharm 2025.3\bin
+DEVECOSTUDIO_VM_OPTIONS=D:\BaiduNetdiskDownload\idea\jetbra-pojie\win2021-2025\vmoptions\devecostudio.vmoptions
+WEBIDE_VM_OPTIONS=D:\BaiduNetdiskDownload\idea\jetbra-pojie\win2021-2025\vmoptions\webide.vmoptions
+CODEX_SHELL=1
+LC_CTYPE=C.UTF-8
+USERDOMAIN_ROAMINGPROFILE=LIU123
+PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.CPL
+ANTHROPIC_AUTH_TOKEN=sk-kXGUZR3QlP21Nj5iCe9YcJhxwLVQMs0s0M3Qgn1G8nZlmrGF
+JETBRAINS_CLIENT_VM_OPTIONS=D:\BaiduNetdiskDownload\idea\jetbra-pojie\win2021-2025\vmoptions\jetbrains_client.vmoptions
+GIT_EXEC_PATH=C:/Program Files/Git/mingw64/libexec/git-core
+DATAGRIP_VM_OPTIONS=D:\BaiduNetdiskDownload\idea\jetbra-pojie\win2021-2025\vmoptions\datagrip.vmoptions
+TEMP=C:\Users\19892\AppData\Local\Temp
+LOCALAPPDATA=C:\Users\19892\AppData\Local
+MSYSTEM=MINGW64
+TERM=xterm-256color
+PROCESSOR_IDENTIFIER=AMD64 Family 25 Model 97 Stepping 2, AuthenticAMD
+PSModulePath=C:\Users\19892\Documents\WindowsPowerShell\Modules;C:\Program Files\WindowsPowerShell\Modules;C:\Windows\system32\WindowsPowerShell\v1.0\Modules
+DATASPELL_VM_OPTIONS=D:\BaiduNetdiskDownload\idea\jetbra-pojie\win2021-2025\vmoptions\dataspell.vmoptions
+USERDOMAIN=LIU123
+PROCESSOR_REVISION=6102
+Path=C:/Program Files/Git/mingw64/libexec/git-core;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\19892\bin;C:\Users\19892\.codex\tmp\arg0\codex-arg0gjNPQ3;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;D:\python\python3.11.3\Scripts\;D:\python\python3.11.3\;D:\python\python3.14.2\Scripts\;D:\python\python3.14.2\;C:\Users\19892\AppData\Local\Microsoft\WindowsApps;D:\PyCharm 2025.3\bin;C:\Users\19892\AppData\Roaming\npm;C:\Users\19892\AppData\Local\Programs\cursor\resources\app\bin;D:\Programs\Microsoft VS Code\bin;C:\Users\19892\AppData\Local\OpenAI\Codex\bin;C:\Program Files\WindowsApps\OpenAI.Codex_26.415.3242.0_x64__2p2nqsd0c76g0\app\resources
+PROCESSOR_LEVEL=25
+NUMBER_OF_PROCESSORS=32
+TMPDIR=C:\Users\19892\AppData\Local\Temp
+PHPSTORM_VM_OPTIONS=D:\BaiduNetdiskDownload\idea\jetbra-pojie\win2021-2025\vmoptions\phpstorm.vmoptions
+ProgramFiles(x86)=C:\Program Files (x86)
+PUBLIC=C:\Users\Public
+ANTHROPIC_BASE_URL=https://globalai.vip
+ZSH_TMUX_AUTOSTARTED=true
+CommonProgramFiles=C:\Program Files (x86)\Common Files
+TMP=C:\Users\19892\AppData\Local\Temp
+PLINK_PROTOCOL=ssh
+COLORTERM=truecolor
+ProgramFiles=C:\Program Files (x86)
+RUBYMINE_VM_OPTIONS=D:\BaiduNetdiskDownload\idea\jetbra-pojie\win2021-2025\vmoptions\rubymine.vmoptions
+APPCODE_VM_OPTIONS=D:\BaiduNetdiskDownload\idea\jetbra-pojie\win2021-2025\vmoptions\appcode.vmoptions
+GOLAND_VM_OPTIONS=D:\BaiduNetdiskDownload\idea\jetbra-pojie\win2021-2025\vmoptions\goland.vmoptions
+SHELL=C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+HOME=C:\Users\19892
+CODEX_INTERNAL_ORIGINATOR_OVERRIDE=Codex Desktop
+CommonProgramW6432=C:\Program Files\Common Files
+DISABLE_AUTO_UPDATE=true
+LOGONSERVER=\\LIU123
+USERPROFILE=C:\Users\19892
+SystemRoot=C:\Windows
+ProgramData=C:\ProgramData
+RIDER_VM_OPTIONS=D:\BaiduNetdiskDownload\idea\jetbra-pojie\win2021-2025\vmoptions\rider.vmoptions
+APPDATA=C:\Users\19892\AppData\Roaming
+HOMEDRIVE=C:
+RUST_LOG=warn
+IDEA_VM_OPTIONS=D:\BaiduNetdiskDownload\idea\jetbra-pojie\win2021-2025\vmoptions\idea.vmoptions
+GATEWAY_VM_OPTIONS=D:\BaiduNetdiskDownload\idea\jetbra-pojie\win2021-2025\vmoptions\gateway.vmoptions
+CLION_VM_OPTIONS=D:\BaiduNetdiskDownload\idea\jetbra-pojie\win2021-2025\vmoptions\clion.vmoptions
+JETBRAINSCLIENT_VM_OPTIONS=D:\BaiduNetdiskDownload\idea\jetbra-pojie\win2021-2025\vmoptions\jetbrainsclient.vmoptions
+USERNAME=19892
+PROCESSOR_ARCHITEW6432=AMD64
+STUDIO_VM_OPTIONS=D:\BaiduNetdiskDownload\idea\jetbra-pojie\win2021-2025\vmoptions\studio.vmoptions
+PROCESSOR_ARCHITECTURE=x86
+OS=Windows_NT
+ComSpec=C:\Windows\system32\cmd.exe
+PYCHARM_VM_OPTIONS=D:\BaiduNetdiskDownload\idea\jetbra-pojie\win2021-2025\vmoptions\pycharm.vmoptions
+SystemDrive=C:
+windir=C:\Windows
+OneDriveConsumer=C:\Users\19892\OneDrive
+ALLUSERSPROFILE=C:\ProgramData
+
+
+------------
+Diagnostic: File system
+Skipped: False
+Success: True
+Exception: None
+Log:
+Temporary directory is 'C:\Users\19892\AppData\Local\Temp\'...
+Checking basic file I/O...
+Writing to temporary file 'C:\Users\19892\AppData\Local\Temp\c4af4e1482c6aeb828a923a1'... OK
+Reading from temporary file 'C:\Users\19892\AppData\Local\Temp\c4af4e1482c6aeb828a923a1'... OK
+Deleting temporary file 'C:\Users\19892\AppData\Local\Temp\c4af4e1482c6aeb828a923a1'... OK
+Testing IFileSystem instance...
+UserHomePath: C:\Users\19892
+UserDataDirectoryPath: C:\Users\19892\.gcm
+GetCurrentDirectory(): D:\Handwritten-Mathematical-Equation-Recognition-Using-CNN-main
+
+------------
+Diagnostic: Networking
+Skipped: False
+Success: True
+Exception: None
+Log:
+Checking networking and HTTP stack...
+Creating HTTP client... OK
+IsNetworkAvailable: True
+Sending HEAD request to http://example.com...Sending HEAD request to https://example.com... OK
+ OK
+Acquiring free TCP port... OK
+Testing local HTTP loopback connections...
+Creating new HTTP listener for http://localhost:53254/... OK
+Waiting for loopback connection... OK
+Writing response... OK
+Waiting for response data... OK
+Loopback connection data OK
+
+------------
+Diagnostic: Git
+Skipped: False
+Success: True
+Exception: None
+Log:
+Getting Git version... OK
+Git version is '2.52.0.windows.1'
+Locating current repository...Git repository at 'D:/Handwritten-Mathematical-Equation-Recognition-Using-CNN-main/.git'
+ OK
+Listing all Git configuration... OK
+Git configuration:
+file:C:/Program Files/Git/etc/gitconfig	diff.astextplain.textconv=astextplain
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.clean=git-lfs clean -- %f
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.smudge=git-lfs smudge -- %f
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.process=git-lfs filter-process
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.required=true
+file:C:/Program Files/Git/etc/gitconfig	http.sslbackend=openssl
+file:C:/Program Files/Git/etc/gitconfig	http.sslcainfo=C:/Program Files/Git/mingw64/etc/ssl/certs/ca-bundle.crt
+file:C:/Program Files/Git/etc/gitconfig	core.autocrlf=true
+file:C:/Program Files/Git/etc/gitconfig	core.fscache=true
+file:C:/Program Files/Git/etc/gitconfig	core.symlinks=false
+file:C:/Program Files/Git/etc/gitconfig	core.editor=notepad
+file:C:/Program Files/Git/etc/gitconfig	pull.rebase=false
+file:C:/Program Files/Git/etc/gitconfig	credential.helper=manager
+file:C:/Program Files/Git/etc/gitconfig	credential.https://dev.azure.com.usehttppath=true
+file:C:/Program Files/Git/etc/gitconfig	init.defaultbranch=main
+file:C:/Users/19892/.gitconfig	user.name=Ruowisnqdqhdrrw
+file:.git/config	core.repositoryformatversion=0
+file:.git/config	core.filemode=false
+file:.git/config	core.bare=false
+file:.git/config	core.logallrefupdates=true
+file:.git/config	core.symlinks=false
+file:.git/config	core.ignorecase=true
+file:.git/config	user.email=156410495+Ruowisnqdqhdrrw@users.noreply.github.com
+file:.git/config	remote.origin.url=https://github.com/Ruowisnqdqhdrrw/bishe.git
+file:.git/config	remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+file:.git/config	branch.codex/upload-local-files-20260606.remote=origin
+file:.git/config	branch.codex/upload-local-files-20260606.merge=refs/heads/main
+file:.git/config	lfs.repositoryformatversion=0
+file:.git/config	lfs.concurrenttransfers=1
+file:.git/config	lfs.basictransfersonly=true
+file:.git/config	filter.lfs.smudge=git-lfs smudge -- %f
+file:.git/config	filter.lfs.process=git-lfs filter-process
+file:.git/config	filter.lfs.required=true
+file:.git/config	filter.lfs.clean=git-lfs clean -- %f
+file:.git/config	http.version=HTTP/1.1
+file:.git/config	http.postbuffer=524288000
+file:.git/config	lfs.https://github.com/Ruowisnqdqhdrrw/bishe.git/info/lfs.access=basic
+
+
+------------
+Diagnostic: Credential storage
+Skipped: False
+Success: True
+Exception: None
+Log:
+ICredentialStore instance is of type: CredentialStore
+Writing test credential... OK
+Reading test credential... OK
+Deleting test credential... OK
+
+------------
+Diagnostic: Microsoft authentication (AAD/MSA)
+Skipped: False
+Success: True
+Exception: None
+Log:
+Broker is not enabled.
+Flow type is: Auto
+Gathering MSAL token cache data... OK
+CacheDirectory: C:\Users\19892\AppData\Local\.IdentityService
+CacheFileName: msal.cache
+CacheFilePath: C:\Users\19892\AppData\Local\.IdentityService\msal.cache
+Creating cache helper... OK
+Verifying MSAL token cache persistence... OK
+
+------------
+Diagnostic: GitHub API
+Skipped: False
+Success: True
+Exception: None
+Log:
+Using 'https://github.com/' as API target.
+Querying '/meta' endpoint... OK
+

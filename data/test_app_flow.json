@@ -1,0 +1,16 @@
+{
+  "next_user_id": 3,
+  "next_history_id": 2,
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password_hash": "scrypt:32768:8:1$YTMMajY46yl2FH7i$db0b8ff351e89e223c4322de52dfbef76fe067f41ce129fdb71511dc31a6b2bf8916a74081c20349594c099f485b3c6638f476e6cf34c01b7ae5f947df16dc8f",
+      "role": "admin",
+      "full_name": "系统管理员",
+      "is_active": 1,
+      "created_at": "2026-04-07 15:34:04"
+    }
+  ],
+  "recognition_history": []
+}
