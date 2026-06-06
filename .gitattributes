@@ -1,0 +1,2 @@
+checkpoints_e2e/best.ckpt filter=lfs diff=lfs merge=lfs -text
+checkpoints_e2e_v3/best.ckpt filter=lfs diff=lfs merge=lfs -text
